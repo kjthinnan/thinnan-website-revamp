@@ -1,0 +1,13 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "T2D84FPZNX.com.jathikka.thinaan",
+                "paths": [
+                    "/events/*"
+                ]
+            }
+        ]
+    }
+}

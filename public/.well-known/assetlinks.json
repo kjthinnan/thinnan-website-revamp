@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.jathikka.thinaan",
+            "sha256_cert_fingerprints": [
+                "10:AF:B4:F4:2A:76:5E:B9:E2:1F:AB:0A:AD:C0:99:DC:AE:EC:5F:52:D5:8A:69:4B:B1:90:FB:11:24:75:EB:9C"
+            ]
+        }
+    }
+]
