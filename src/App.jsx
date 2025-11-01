@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/navbar';
 import HeroSection from './components/hero_section';
+import ProblemSection from './components/problem_section';
 import ProblemMissionSection from './components/problem_mission_section';
 import FeaturesSection from './components/features_section';
 import HowItWorksSection from './components/how_it_works_section';
@@ -152,6 +153,7 @@ function App() {
         
         <main>
           <HeroSection />
+          <ProblemSection />
           <ProblemMissionSection />
           <FeaturesSection />
           <HowItWorksSection />

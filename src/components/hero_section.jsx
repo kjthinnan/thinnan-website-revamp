@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import foodVideo from '../assets/videos/1101.mp4';
+import foodVideo from '../assets/videos/food_video.mp4';
 const HeroSection = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [buttonText, setButtonText] = useState('join thinnan');
