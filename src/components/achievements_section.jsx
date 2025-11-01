@@ -169,8 +169,8 @@ const AchievementsSection = () => {
                     <div 
                       className="absolute left-0 top-0 bottom-0 w-1 rounded-r-full transition-all duration-700 ease-in-out"
                       style={{
-                        backgroundColor: isSelected ? '#FB6B23' : '#E5E7EB',
-                        boxShadow: isSelected ? '0 0 10px rgba(251, 107, 35, 0.5)' : 'none',
+                        backgroundColor: isSelected ? '#7C310A' : '#E5E7EB',
+                        boxShadow: isSelected ? '0 0 10px rgba(124, 49, 10, 0.5)' : 'none',
                       }}
                     ></div>
                     
@@ -178,7 +178,7 @@ const AchievementsSection = () => {
                       className="pl-6 pr-4 py-6 rounded-xl transition-all duration-700 ease-in-out hover:bg-gray-50"
                       style={{
                         background: isSelected 
-                          ? 'linear-gradient(to right, rgba(251, 107, 35, 0.05), transparent)' 
+                          ? 'linear-gradient(to right, rgba(124, 49, 10, 0.05), transparent)' 
                           : 'transparent',
                       }}
                     >
@@ -187,14 +187,14 @@ const AchievementsSection = () => {
                         <div 
                           className="w-2 h-2 rounded-full transition-all duration-700 ease-in-out"
                           style={{
-                            backgroundColor: isSelected ? '#FB6B23' : '#D1D5DB',
+                            backgroundColor: isSelected ? '#7C310A' : '#D1D5DB',
                             transform: isSelected ? 'scale(1.25)' : 'scale(1)',
                           }}
                         ></div>
                         <span 
                           className="text-sm font-medium transition-all duration-700 ease-in-out"
                           style={{
-                            color: isSelected ? '#FB6B23' : '#6B7280',
+                            color: isSelected ? '#7C310A' : '#6B7280',
                           }}
                         >
                           {achievement.date}
@@ -295,7 +295,7 @@ const AchievementsSection = () => {
                   style={{
                     width: index === selectedIndex ? '48px' : '8px',
                     height: '8px',
-                    backgroundColor: index === selectedIndex ? '#FB6B23' : '#D1D5DB',
+                    backgroundColor: index === selectedIndex ? '#7C310A' : '#D1D5DB',
                   }}
                   aria-label={`Go to achievement ${index + 1}`}
                 ></button>
@@ -468,13 +468,13 @@ const AchievementsSection = () => {
         }
         
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #FB6B23;
+          background: #7C310A;
           border-radius: 10px;
           opacity: 0.5;
         }
         
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #FF7A33;
+          background: #8B3A0E;
         }
       `}</style>
     </section>
