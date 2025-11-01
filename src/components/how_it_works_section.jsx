@@ -162,21 +162,6 @@ const HowItWorksSection = () => {
             </div>
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-20 sm:mt-28 text-center">
-          <div className="inline-flex flex-col items-center gap-6 p-8 sm:p-12 bg-gradient-to-br from-secondary to-background rounded-3xl shadow-xl">
-            <h3 className="text-2xl sm:text-3xl font-bold text-primary-text">
-              Ready to start your journey?
-            </h3>
-            <a
-              href="https://thinnan.page.link/download"
-              className="inline-flex items-center justify-center px-10 py-4 bg-primary text-white rounded-full font-medium text-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/20 transform hover:scale-105"
-            >
-              Download Thinnan
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );
