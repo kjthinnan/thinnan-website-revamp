@@ -1,188 +1,180 @@
+import { useEffect, useRef, useState } from 'react';
+import addToCravings from '../assets/images/features/add_to_cravings.png';
+import getMatched from '../assets/images/features/get_matched.png';
+import addToChat from '../assets/images/features/add_to_chat.png';
+import planCookout from '../assets/images/features/plan_cookout.png';
+import shareStory from '../assets/images/features/share_story.png';
+
 const HowItWorksSection = () => {
-  const memberImages = [
-    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+  const [visibleSteps, setVisibleSteps] = useState([]);
+  const stepsRef = useRef([]);
+
+  const steps = [
+    {
+      id: 1,
+      image: addToCravings,
+      title: 'Find a dish that excites you',
+      subtitle: 'From scroll to stove in three taps',
+      description: 'Browse through authentic recipes and cooking ideas shared by your friends and community. Get inspired by what others are making.',
+      align: 'left'
+    },
+    {
+      id: 2,
+      image: getMatched,
+      title: 'Get matched with food lovers',
+      subtitle: 'No algorithms. No ads. Just real people and real food.',
+      description: "When you and your friends crave the same dish, we'll match you together. It's that simple.",
+      align: 'right'
+    },
+    {
+      id: 3,
+      image: addToChat,
+      title: 'Start planning together',
+      subtitle: 'Turn content into conversation',
+      description: 'Chat with your matches, decide when and where to cook or eat. Bring more friends along for the experience.',
+      align: 'left'
+    },
+    {
+      id: 4,
+      image: planCookout,
+      title: 'Create your cookout or eatout',
+      subtitle: 'Make it official',
+      description: 'Set the date, time, and location. Invite your group and get ready for a memorable food experience.',
+      align: 'right'
+    },
+    {
+      id: 5,
+      image: shareStory,
+      title: 'Share your story',
+      subtitle: 'Capture the memories',
+      description: 'Document your culinary adventure with photos and stories. Inspire others in your community to create their own experiences.',
+      align: 'left'
+    }
   ];
 
+  useEffect(() => {
+    const observers = stepsRef.current.map((ref, index) => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setVisibleSteps((prev) => [...new Set([...prev, index])]);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      if (ref) observer.observe(ref);
+      return observer;
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
+
   return (
-    <section id="how-it-works" className="py-12 md:py-16 relative overflow-hidden bg-white">
-      {/* Background elements */}
-      <div className="absolute inset-0 bg-white"></div>
-      
-      {/* Decorative elements */}
-      <div className="absolute left-0 top-1/4 w-32 h-64 bg-accent/5 -rotate-45 blur-3xl opacity-70"></div>
-      <div className="absolute right-0 bottom-1/4 w-32 h-64 bg-accent/5 -rotate-45 blur-3xl opacity-70"></div>
-      
-      {/* Dotted pattern */}
-      <div className="absolute inset-0 opacity-30"
-        style={{
-          backgroundImage: `radial-gradient(circle at 25px 25px, rgba(0, 0, 0, 0.1) 2px, transparent 0)`,
-          backgroundSize: `50px 50px`
-        }}
-      ></div>
-      
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-12 relative">
-          <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-32 h-32 bg-accent/5 rounded-full blur-xl"></div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 relative text-black">
+    <section id="how-it-works" className="py-20 sm:py-28 md:py-36 relative overflow-hidden bg-white">
+      {/* Background Decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16 sm:mb-20 md:mb-28">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary-text mb-4">
             how thinnan works
-            <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-40"></div>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mt-4">
-            Join our community and start your culinary journey in five simple steps.
+          <p className="text-lg sm:text-xl text-secondary-grey max-w-2xl mx-auto">
+            From scroll to stove in three taps
           </p>
         </div>
 
-        <div className="relative">
-          {/* Connecting Lines */}
-          <div className="absolute left-[50%] top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-accent/20 to-transparent"></div>
-          
-          <div className="space-y-8">
-            {/* Step 1 - Create Profile */}
-            <div className="relative group">
-              <div className="bg-white backdrop-blur-sm bg-opacity-80 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-accent to-accent/80 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg mr-4">1</div>
-                    <h3 className="text-xl font-bold group-hover:text-accent transition-colors duration-300">Create Your Profile</h3>
-                  </div>
-                  <p className="text-gray-600 mb-4">Set up your bio, dietary preferences, and interests.</p>
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center p-3 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors duration-300">
-                      <span className="text-2xl mr-3">🥗</span>
-                      <span className="text-sm">Dietary Preferences</span>
-                    </div>
-                    <div className="flex items-center p-3 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors duration-300">
-                      <span className="text-2xl mr-3">👨‍🍳</span>
-                      <span className="text-sm">Cooking Skills</span>
-                    </div>
+        {/* Steps */}
+        <div className="space-y-24 sm:space-y-32 md:space-y-40">
+          {steps.map((step, index) => (
+            <div
+              key={step.id}
+              ref={(el) => (stepsRef.current[index] = el)}
+              className={`relative transition-all duration-1000 ${
+                visibleSteps.includes(index)
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-20'
+              }`}
+            >
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
+                step.align === 'right' ? 'lg:grid-flow-dense' : ''
+              }`}>
+                {/* Image Side */}
+                <div
+                  className={`relative ${step.align === 'right' ? 'lg:col-start-2' : ''}`}
+                  style={{
+                    transitionDelay: visibleSteps.includes(index) ? '200ms' : '0ms',
+                  }}
+                >
+                  {/* Phone Mockup Container */}
+                  <div className="relative transform transition-transform duration-700 hover:scale-105">
+                    {/* Image */}
+                    <img
+                      src={step.image}
+                      alt={step.title}
+                      className="w-full h-auto"
+                    />
                   </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Step 2 - Add Friends */}
-            <div className="relative group">
-              <div className="bg-white backdrop-blur-sm bg-opacity-80 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-accent to-accent/80 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg mr-4">2</div>
-                    <h3 className="text-xl font-bold group-hover:text-accent transition-colors duration-300">Add Friends & Groups</h3>
-                  </div>
-                  <p className="text-gray-600 mb-4">Connect with friends or build your own cooking circles.</p>
-                  <div className="flex items-center justify-between bg-gray-50 p-4 rounded-xl">
-                    <div className="flex items-center">
-                      <span className="text-2xl mr-3">👥</span>
-                      <div>
-                        <h4 className="font-medium">Cooking Circle</h4>
-                        <p className="text-sm text-gray-500">12 members</p>
-                      </div>
-                    </div>
-                    <div className="flex -space-x-2">
-                      {memberImages.map((img, index) => (
-                        <div key={index} className="w-8 h-8 rounded-full border-2 border-white overflow-hidden">
-                          <img src={img} alt={`Member ${index + 1}`} className="w-full h-full object-cover" />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                {/* Content Side */}
+                <div
+                  className={`space-y-6 ${step.align === 'right' ? 'lg:col-start-1' : ''}`}
+                  style={{
+                    transitionDelay: visibleSteps.includes(index) ? '400ms' : '0ms',
+                  }}
+                >
+                  {/* Title */}
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-text leading-tight">
+                    {step.title}
+                  </h3>
 
-            {/* Step 3 - Plan Cookout */}
-            <div className="relative group">
-              <div className="bg-white backdrop-blur-sm bg-opacity-80 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-accent to-accent/80 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg mr-4">3</div>
-                    <h3 className="text-xl font-bold group-hover:text-accent transition-colors duration-300">Plan a Cookout</h3>
-                  </div>
-                  <p className="text-gray-600 mb-4">Share what you're making, invite guests, and cook together.</p>
-                  <div className="bg-gray-50 rounded-xl p-4">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center">
-                        <span className="text-2xl mr-3">🍕</span>
-                        <div>
-                          <h4 className="font-medium">Pizza Night</h4>
-                          <p className="text-sm text-gray-500">Italian Cuisine</p>
-                        </div>
-                      </div>
-                      <span className="text-accent text-sm font-medium">8 spots left</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm text-gray-500">
-                      <div className="flex items-center">
-                        <span className="mr-2">🕒</span>
-                        Tomorrow, 7 PM
-                      </div>
-                      <div className="flex items-center">
-                        <span className="mr-2">📍</span>
-                        Helsinki
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  {/* Subtitle */}
+                  <p className="text-xl sm:text-2xl text-primary font-medium">
+                    {step.subtitle}
+                  </p>
 
-            {/* Step 4 - Share Experience */}
-            <div className="relative group">
-              <div className="bg-white backdrop-blur-sm bg-opacity-80 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-accent to-accent/80 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg mr-4">4</div>
-                    <h3 className="text-xl font-bold group-hover:text-accent transition-colors duration-300">Share the Experience</h3>
-                  </div>
-                  <p className="text-gray-600 mb-4">Capture the moment with photos and stories.</p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-gray-50 rounded-xl p-4 text-center">
-                      <span className="text-3xl mb-2 inline-block">📸</span>
-                      <h4 className="font-medium text-sm">Photos</h4>
-                    </div>
-                    <div className="bg-gray-50 rounded-xl p-4 text-center">
-                      <span className="text-3xl mb-2 inline-block">📝</span>
-                      <h4 className="font-medium text-sm">Stories</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  {/* Description */}
+                  <p className="text-lg text-secondary-grey leading-relaxed">
+                    {step.description}
+                  </p>
 
-            {/* Step 5 - Grow Network */}
-            <div className="relative group">
-              <div className="bg-white backdrop-blur-sm bg-opacity-80 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-accent to-accent/80 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg mr-4">5</div>
-                    <h3 className="text-xl font-bold group-hover:text-accent transition-colors duration-300">Grow Your Network</h3>
-                  </div>
-                  <p className="text-gray-600 mb-4">Meet new people through mutual friends and shared meals.</p>
-                  <div className="bg-gray-50 rounded-xl p-4">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex -space-x-2">
-                        {memberImages.map((img, index) => (
-                          <div key={index} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden">
-                            <img src={img} alt={`Network Member ${index + 1}`} className="w-full h-full object-cover" />
-                          </div>
-                        ))}
-                      </div>
-                      <span className="text-accent font-medium">Growing community</span>
-                    </div>
-                    <div className="text-center bg-white rounded-lg p-2 mt-2">
-                      <span className="text-2xl font-bold text-gray-700">500+</span>
-                      <span className="text-sm text-gray-500 ml-2">Active Members</span>
-                    </div>
+                  {/* Decorative Line */}
+                  <div className="pt-4">
+                    <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></div>
                   </div>
                 </div>
               </div>
+
+              {/* Connecting Line Between Steps (except last) */}
+              {index < steps.length - 1 && (
+                <div className="hidden lg:block absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-px h-20 bg-gradient-to-b from-primary/30 to-transparent"></div>
+              )}
             </div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-20 sm:mt-28 text-center">
+          <div className="inline-flex flex-col items-center gap-6 p-8 sm:p-12 bg-gradient-to-br from-secondary to-background rounded-3xl shadow-xl">
+            <h3 className="text-2xl sm:text-3xl font-bold text-primary-text">
+              Ready to start your journey?
+            </h3>
+            <a
+              href="https://thinnan.page.link/download"
+              className="inline-flex items-center justify-center px-10 py-4 bg-primary text-white rounded-full font-medium text-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/20 transform hover:scale-105"
+            >
+              Download Thinnan
+            </a>
           </div>
         </div>
       </div>
