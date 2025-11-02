@@ -163,7 +163,7 @@ const AchievementsSection = () => {
                   <div
                     key={`${achievement.id}-${achievement.originalIndex}`}
                     onClick={() => handleDialClick(achievement.originalIndex)}
-                    className={`relative cursor-pointer transform transition-all duration-700 ease-out group ${
+                    className={`relative cursor-pointer transform transition-all duration-700 ease-out group overflow-hidden rounded-3xl ${
                       isSelected ? 'z-10' : 'z-0'
                     }`}
                     style={{
@@ -184,8 +184,8 @@ const AchievementsSection = () => {
                           ? 'linear-gradient(135deg, rgba(124, 49, 10, 0.15), rgba(124, 49, 10, 0.05), rgba(124, 49, 10, 0.08))' 
                           : 'linear-gradient(135deg, rgba(124, 49, 10, 0.08), rgba(124, 49, 10, 0.03), rgba(124, 49, 10, 0.08))',
                         boxShadow: isSelected 
-                          ? 'inset 0 0 0 2px rgba(124, 49, 10, 0.25), 0 0 16px rgba(124, 49, 10, 0.12), 0 4px 12px rgba(124, 49, 10, 0.08)' 
-                          : 'inset 0 0 0 1px rgba(124, 49, 10, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
+                          ? 'inset 0 0 0 2px rgba(124, 49, 10, 0.25)' 
+                          : 'inset 0 0 0 1px rgba(124, 49, 10, 0.08)',
                         transition: 'all 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                       }}
                     ></div>
