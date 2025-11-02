@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 
 // Import achievements data
 import achievements from '../data/achievements';
@@ -25,8 +25,8 @@ const AchievementsSection = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Calculate which items to show based on selected index
-  const getVisibleAchievements = () => {
+  // Calculate which items to show based on selected index - memoized to prevent glitching
+  const visibleAchievements = useMemo(() => {
     const visibleIndices = [];
     const totalItems = achievements.length;
     
@@ -42,7 +42,7 @@ const AchievementsSection = () => {
       ...achievements[index],
       originalIndex: index
     }));
-  };
+  }, [selectedIndex]);
 
   // Auto-rotate through ALL achievements - ONLY on mobile
   useEffect(() => {
@@ -84,8 +84,6 @@ const AchievementsSection = () => {
     setSelectedAchievement(achievement);
     document.body.style.overflow = 'hidden';
   };
-
-  const visibleAchievements = getVisibleAchievements();
 
   const closeModal = () => {
     setSelectedAchievement(null);
@@ -154,7 +152,7 @@ const AchievementsSection = () => {
           
           {/* Left Side - Dial/Navigation - Shows 3 items at a time */}
           <div className="lg:col-span-5 relative overflow-hidden flex">
-            <div className="w-full" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '12px' }}>
+            <div className="w-full" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '12px', willChange: 'auto' }}>
               {visibleAchievements.map((achievement, displayIndex) => {
                 const isSelected = achievement.originalIndex === selectedIndex;
                 const distanceFromSelected = Math.abs(displayIndex - Math.floor(VISIBLE_ITEMS / 2));
@@ -169,13 +167,14 @@ const AchievementsSection = () => {
                     style={{
                       opacity: isSelected ? 1 : Math.max(0.5, 1 - (distanceFromSelected * 0.15)),
                       transform: `scale(${isSelected ? 1 : 0.96}) translateY(${isSelected ? '0' : '2px'})`,
-                      transition: 'opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94), background 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      transition: 'opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94), background 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94), min-height 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94), flex-grow 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                       height: 'auto',
                       minHeight: isSelected ? '220px' : '180px',
                       flexGrow: isSelected ? 1.2 : 1,
                       background: isSelected 
                         ? 'linear-gradient(to right, rgba(124, 49, 10, 0.06), rgba(255, 255, 255, 0.3), transparent)' 
                         : 'transparent',
+                      willChange: 'transform, opacity, background',
                     }}
                   >
                     {/* Enhanced selection indicator - gradient border with glow */}
@@ -198,6 +197,7 @@ const AchievementsSection = () => {
                       className="pl-6 pr-4 py-6 transition-all duration-700 relative"
                       style={{
                         minHeight: isSelected ? '200px' : '160px',
+                        transition: 'min-height 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                       }}
                     >
                       {/* Hover shine effect */}
@@ -270,7 +270,8 @@ const AchievementsSection = () => {
               style={{
                 opacity: isAnimating ? 0.6 : 1,
                 transform: isAnimating ? 'scale(0.97)' : 'scale(1)',
-                transition: 'all 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                transition: 'opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                willChange: 'transform, opacity',
               }}
               onClick={() => openModal(achievements[selectedIndex])}
             >
