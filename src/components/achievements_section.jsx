@@ -271,7 +271,22 @@ const AchievementsSection = () => {
               onClick={() => openModal(achievements[selectedIndex])}
             >
               {/* Card Container */}
-              <div className="relative rounded-3xl overflow-hidden bg-white transition-all duration-700 ease-out" style={{ transition: 'all 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+              <div 
+                className="relative rounded-3xl overflow-hidden bg-white transition-all duration-700 ease-out" 
+                style={{ 
+                  transition: 'all 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  border: '1px solid rgba(0, 0, 0, 0.1)',
+                  boxShadow: `
+                    inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+                    inset 0 -1px 0 0 rgba(0, 0, 0, 0.1),
+                    inset 1px 0 0 0 rgba(255, 255, 255, 0.6),
+                    inset -1px 0 0 0 rgba(0, 0, 0, 0.1),
+                    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                    0 10px 15px -3px rgba(0, 0, 0, 0.1)
+                  `,
+                }}
+              >
                 
                 {/* Image Section */}
                 <div className="relative h-64 sm:h-80 md:h-96 overflow-hidden">
