@@ -130,7 +130,7 @@ const Navbar = () => {
   return (
     <div className="fixed w-full top-0 z-50 px-2 sm:px-4 pt-2 sm:pt-4">
       <nav
-        className={`max-w-7xl mx-auto rounded-xl sm:rounded-2xl transition-all duration-300 relative overflow-hidden ${
+        className={`max-w-md mx-auto rounded-xl sm:rounded-2xl transition-all duration-300 relative overflow-hidden ${
           isPastHero
             ? scrolled 
               ? "bg-white/95 backdrop-blur-sm shadow-lg border border-gray-200" 
@@ -189,27 +189,15 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Menu - Centered */}
-          <div className="hidden md:flex flex-1 justify-center items-center space-x-6 lg:space-x-8">
+          <div className="hidden md:flex flex-1 justify-center items-center space-x-4 lg:space-x-6">
             {isHomePage ? (
               <>
-                <NavLink href="#how-it-works">how it works</NavLink>
-                <NavLink href="#community">community</NavLink>
-                <NavLink href="#team">team</NavLink>
-                <NavLink href="#achievements">achievements</NavLink>
+                <NavLink href="#how-it-works">product</NavLink>
                 <NavLink to="/contact">contact</NavLink>
               </>
             ) : (
               <>
-                <NavLink to="/#how-it-works">how it works</NavLink>
-                <NavLink to="/#community">community</NavLink>
-                <NavLink to="/#team">team</NavLink>
-                {window.location.pathname === "/achievements" ? (
-                  <NavLink to="/#achievements">
-                    achievements
-                  </NavLink>
-                ) : (
-                  <NavLink to="/#achievements">achievements</NavLink>
-                )}
+                <NavLink to="/#how-it-works">product</NavLink>
                 {window.location.pathname === "/contact" ? (
                   <NavLink to="/contact">
                     contact
@@ -221,13 +209,13 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Download Button - Right Aligned */}
+          {/* Join Thinnan Button - Right Aligned */}
           <div className="hidden md:block flex-1 md:flex-none text-right">
             <a
               href="https://thinnan.page.link/download"
-              className="bg-black text-white px-6 py-2 rounded-xl font-medium hover:bg-gray-800 transition-all duration-300"
+              className="bg-white text-black px-6 py-2 rounded-xl font-medium border border-gray-300 hover:bg-gray-50 transition-all duration-300"
             >
-              download app
+              join thinnan
             </a>
           </div>
 
@@ -302,31 +290,15 @@ const Navbar = () => {
               {isHomePage ? (
                 <>
                   <MobileNavLink href="#how-it-works">
-                    how it works
-                  </MobileNavLink>
-                  <MobileNavLink href="#community">community</MobileNavLink>
-                  <MobileNavLink href="#team">team</MobileNavLink>
-                  <MobileNavLink href="#achievements">
-                    achievements
+                    product
                   </MobileNavLink>
                   <MobileNavLink to="/contact">contact</MobileNavLink>
                 </>
               ) : (
                 <>
                   <MobileNavLink to="/#how-it-works">
-                    how it works
+                    product
                   </MobileNavLink>
-                  <MobileNavLink to="/#community">community</MobileNavLink>
-                  <MobileNavLink to="/#team">team</MobileNavLink>
-                  {window.location.pathname === "/achievements" ? (
-                    <MobileNavLink to="/#achievements">
-                      achievements
-                    </MobileNavLink>
-                  ) : (
-                    <MobileNavLink to="/#achievements">
-                      achievements
-                    </MobileNavLink>
-                  )}
                   {window.location.pathname === "/contact" ? (
                     <MobileNavLink to="/contact">
                       contact
@@ -339,10 +311,10 @@ const Navbar = () => {
               <div className="pt-2">
                 <a
                   href="https://thinnan.page.link/download"
-                  className="block bg-black text-white px-6 py-3 rounded-xl font-medium hover:bg-gray-800 transition-all duration-300 text-center text-lg"
+                  className="block bg-white text-black px-6 py-3 rounded-xl font-medium border border-gray-300 hover:bg-gray-50 transition-all duration-300 text-center text-lg"
                   onClick={closeMenu}
                 >
-                  download app
+                  join thinnan
                 </a>
               </div>
             </div>

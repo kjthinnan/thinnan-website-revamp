@@ -112,7 +112,7 @@ const ProblemSection = () => {
 
           {/* Large Filled Number */}
           <div 
-            className="mb-6 sm:mb-8 md:mb-10 w-full"
+            className="mb-6 sm:mb-12 md:mb-18 w-full"
             style={{
               opacity: hasAnimated ? 1 : 0,
               transform: hasAnimated ? 'translateY(0)' : 'translateY(30px)',
@@ -123,9 +123,10 @@ const ProblemSection = () => {
               className="font-bold leading-none text-primary"
               style={{
                 fontFamily: 'Manrope, sans-serif',
-                letterSpacing: '-0.02em',
-                fontWeight: 700,
-                fontSize: 'clamp(1.5rem, 5vw, 8rem)',
+                letterSpacing: '-0.018em',
+                fontWeight: 900,
+                // Reduced both min and max size slightly
+                fontSize: 'clamp(3.2rem, 12vw, 11rem)',
                 display: 'block',
                 maxWidth: '100%',
                 wordBreak: 'break-all',

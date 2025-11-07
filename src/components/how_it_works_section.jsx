@@ -101,7 +101,7 @@ const HowItWorksSection = () => {
           <div className="flex flex-col justify-center space-y-6 sm:space-y-8">
             {/* Title */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" style={{ color: '#1E1E1E' }}>
-              how it works?
+              how does it work?
             </h2>
 
             {/* Step Indicator */}
