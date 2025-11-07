@@ -196,7 +196,7 @@ const Navbar = () => {
                 <NavLink href="#community">community</NavLink>
                 <NavLink href="#team">team</NavLink>
                 <NavLink href="#achievements">achievements</NavLink>
-                <NavLink href="#contact">contact</NavLink>
+                <NavLink to="/contact">contact</NavLink>
               </>
             ) : (
               <>
@@ -210,7 +210,13 @@ const Navbar = () => {
                 ) : (
                   <NavLink to="/#achievements">achievements</NavLink>
                 )}
-                <NavLink to="/#contact">contact</NavLink>
+                {window.location.pathname === "/contact" ? (
+                  <NavLink to="/contact">
+                    contact
+                  </NavLink>
+                ) : (
+                  <NavLink to="/contact">contact</NavLink>
+                )}
               </>
             )}
           </div>
@@ -303,7 +309,7 @@ const Navbar = () => {
                   <MobileNavLink href="#achievements">
                     achievements
                   </MobileNavLink>
-                  <MobileNavLink href="#contact">contact</MobileNavLink>
+                  <MobileNavLink to="/contact">contact</MobileNavLink>
                 </>
               ) : (
                 <>
@@ -321,7 +327,13 @@ const Navbar = () => {
                       achievements
                     </MobileNavLink>
                   )}
-                  <MobileNavLink to="/#contact">contact</MobileNavLink>
+                  {window.location.pathname === "/contact" ? (
+                    <MobileNavLink to="/contact">
+                      contact
+                    </MobileNavLink>
+                  ) : (
+                    <MobileNavLink to="/contact">contact</MobileNavLink>
+                  )}
                 </>
               )}
               <div className="pt-2">

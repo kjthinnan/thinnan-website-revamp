@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import './index.css'
 import App from './App.jsx'
 import AllAchievements from './pages/AllAchievements.jsx'
+import Contact from './pages/Contact.jsx'
 
 // ScrollToTop component to handle scroll restoration on route change
 function ScrollToTop() {
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/achievements" element={<AllAchievements />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

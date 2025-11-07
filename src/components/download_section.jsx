@@ -27,8 +27,9 @@ const DownloadSection = () => {
             <div className="absolute -top-10 -left-10 w-32 h-32 bg-accent/20 rounded-full opacity-40 blur-2xl"></div>
             
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 md:mb-12 relative leading-tight">
-              eating alone? never again. download thinnan!
-              <div className="absolute -bottom-2 left-0 right-0 md:right-auto md:left-0 md:w-16 h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-40"></div>
+              your social life,<br/>
+              back in real life.<br/>
+              <span className="mt-8 block">download thinnan now!</span>
             </h2>
             
             <div className="mt-16 md:mt-20 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
