@@ -30,27 +30,18 @@ const ProblemMissionSection = () => {
   };
 
   return (
-    <section className="relative py-20 sm:py-28 md:py-36 bg-background overflow-hidden">
+    <section className="relative pt-12 sm:pt-16 md:pt-20 pb-20 sm:pb-28 md:pb-36 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 relative z-10">
-        {/* Section Heading */}
-        <div className="text-center mb-16 sm:mb-20">
-          <div className="inline-block">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary-text mb-3 relative">
-              meet thinnan.
-              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent"></div>
-            </h2>
-          </div>
-          <p className="text-lg sm:text-xl text-secondary-grey mt-6 max-w-2xl mx-auto">
-           your social life, back in real life.
-          </p>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left - Static Title Content */}
           <div className="lg:col-span-1">
             <div className="space-y-8">
-              {/* Tagline */}
-
+              {/* Meet Thinnan Title */}
+              <div className="inline-block">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-text mb-3 relative">
+                  meet thinnan.
+                </h2>
+              </div>
 
               {/* Main Static Title */}
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-primary-text">

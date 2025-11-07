@@ -90,7 +90,7 @@ const ProblemSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-24 sm:py-32 md:py-40 lg:py-48 bg-background overflow-hidden min-h-screen flex items-center font-manrope"
+      className="relative pt-24 sm:pt-32 md:pt-40 lg:pt-48 pb-12 sm:pb-16 md:pb-20 lg:pb-24 bg-background overflow-hidden min-h-screen flex items-center font-manrope"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 w-full relative z-10 overflow-x-hidden">
         {/* Main Content Container - Left Aligned */}
