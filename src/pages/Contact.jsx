@@ -10,12 +10,72 @@ import annuImg from '../assets/images/founders/annu.png';
 
 const Contact = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [formType, setFormType] = useState('bug'); // 'bug' or 'feature'
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    title: '',
+    details: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
 
   useEffect(() => {
     window.scrollTo(0, 0);
     // Trigger animation after component mounts
     setTimeout(() => setIsLoaded(true), 100);
   }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // TODO: Replace with your form submission service
+    // Option 1: Formspree (https://formspree.io) - Free tier available
+    // Option 2: EmailJS (https://www.emailjs.com) - Free tier available
+    // Option 3: Your own API endpoint
+    
+    try {
+      // Example using Formspree (replace YOUR_FORM_ID with your actual form ID)
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: formType === 'bug' ? 'Bug Report' : 'Feature Request',
+          ...formData
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', title: '', details: '' });
+        setTimeout(() => setSubmitStatus(null), 5000);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setFormData({ name: '', email: '', title: '', details: '' });
+    setSubmitStatus(null);
+  };
 
   // Founders data with contact information
   const founders = [
@@ -146,6 +206,145 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      {/* Feature Request / Bug Report Section */}
+      <section className="py-16 sm:py-20 md:py-28 lg:py-36 relative overflow-hidden bg-background">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+          <div 
+            className={`transition-all duration-1000 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            {/* Section Header */}
+            <div className="mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary-text mb-4 sm:mb-6 relative inline-block whitespace-nowrap">
+                help us to improve thinnan!
+                <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent"></div>
+              </h2>
+            </div>
+
+            {/* Form Type Toggle */}
+            <div className="flex gap-4 mb-8 sm:mb-10">
+              <button
+                type="button"
+                onClick={() => setFormType('bug')}
+                className={`px-6 py-3 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 ${
+                  formType === 'bug'
+                    ? 'bg-accent text-white shadow-lg shadow-accent/30'
+                    : 'bg-white text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                Report a Bug
+              </button>
+              <button
+                type="button"
+                onClick={() => setFormType('feature')}
+                className={`px-6 py-3 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 ${
+                  formType === 'feature'
+                    ? 'bg-accent text-white shadow-lg shadow-accent/30'
+                    : 'bg-white text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                Request a Feature
+              </button>
+            </div>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+              {/* Name Input */}
+              <div className="relative group">
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="your name"
+                  required
+                  className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-accent outline-none text-base sm:text-lg md:text-xl text-primary-text placeholder-gray-400 pb-2 transition-all duration-300 group-hover:border-gray-400"
+                />
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-focus-within:w-full"></div>
+              </div>
+
+              {/* Email Input */}
+              <div className="relative group">
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="your email"
+                  required
+                  className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-accent outline-none text-base sm:text-lg md:text-xl text-primary-text placeholder-gray-400 pb-2 transition-all duration-300 group-hover:border-gray-400"
+                />
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-focus-within:w-full"></div>
+              </div>
+
+              {/* Title Input */}
+              <div className="relative group">
+                <input
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleInputChange}
+                  placeholder="title"
+                  required
+                  className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-accent outline-none text-base sm:text-lg md:text-xl text-primary-text placeholder-gray-400 pb-2 transition-all duration-300 group-hover:border-gray-400"
+                />
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-focus-within:w-full"></div>
+              </div>
+
+              {/* Details Textarea */}
+              <div className="relative group">
+                <textarea
+                  name="details"
+                  value={formData.details}
+                  onChange={handleInputChange}
+                  placeholder="details"
+                  required
+                  rows={4}
+                  className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-transparent outline-none text-base sm:text-lg md:text-xl text-primary-text placeholder-gray-400 pb-2 pt-1 resize-none transition-all duration-300"
+                />
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-focus-within:w-full"></div>
+              </div>
+
+              {/* Submit Status Message */}
+              {submitStatus && (
+                <div 
+                  className={`p-4 rounded-xl transition-all duration-500 ${
+                    submitStatus === 'success'
+                      ? 'bg-green-50 text-green-700 border border-green-200'
+                      : 'bg-red-50 text-red-700 border border-red-200'
+                  }`}
+                >
+                  {submitStatus === 'success' 
+                    ? '✓ Thank you! Your submission has been received.'
+                    : '✗ Something went wrong. Please try again later.'}
+                </div>
+              )}
+
+              {/* Action Buttons */}
+              <div className="flex justify-end gap-4 sm:gap-6 pt-4">
+                <button
+                  type="button"
+                  onClick={handleCancel}
+                  disabled={isSubmitting}
+                  className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold text-primary-text hover:text-accent transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-accent text-white rounded-xl font-bold text-base sm:text-lg hover:bg-accent/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-accent/30 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105"
+                >
+                  {isSubmitting ? 'submitting...' : 'submit'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <Footer />
       <ScrollToTopButton />
     </div>
