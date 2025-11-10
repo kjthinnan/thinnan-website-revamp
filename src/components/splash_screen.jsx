@@ -67,9 +67,9 @@ const SplashScreen = ({ onComplete }) => {
               animationDelay: '0.5s'
             }}
           >
-            the social food network
+            food social media
           </p>
-        </div>
+        </div>  
         
         {/* Loading indicator */}
         <div 

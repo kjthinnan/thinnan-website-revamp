@@ -52,6 +52,7 @@ const Navbar = () => {
 
   const isHomePage = window.location.pathname === "/";
   const isContactPage = window.location.pathname === "/contact";
+  const isTeamPage = window.location.pathname === "/team";
 
   // Handle navigation to how-it-works section from other pages
   const handleProductClick = (e) => {
@@ -68,25 +69,12 @@ const Navbar = () => {
     }
   };
 
-  const handleTeamClick = (e) => {
-    if (!isHomePage) {
-      e.preventDefault();
-      navigate('/');
-      setTimeout(() => {
-        const teamSection = document.getElementById('team');
-        if (teamSection) {
-          teamSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 200);
-    }
-  };
-
   // Reusable nav link component with hover effect
   const NavLink = ({ href, to, children, onClick }) => {
-    const textClass = isContactPage || isPastHero 
+    const textClass = isContactPage || isTeamPage || isPastHero 
       ? "text-gray-700 hover:text-black" 
       : "text-white hover:text-white/80";
-    const underlineClass = isContactPage || isPastHero
+    const underlineClass = isContactPage || isTeamPage || isPastHero
       ? "bg-accent"
       : "bg-white/60";
     
@@ -119,10 +107,10 @@ const Navbar = () => {
 
   // Mobile nav link component
   const MobileNavLink = ({ href, to, children }) => {
-    const textClass = isContactPage || isPastHero 
+    const textClass = isContactPage || isTeamPage || isPastHero 
       ? "text-gray-700 hover:text-black" 
       : "text-white hover:text-white/80";
-    const underlineClass = isContactPage || isPastHero
+    const underlineClass = isContactPage || isTeamPage || isPastHero
       ? "bg-accent"
       : "bg-white/60";
     
@@ -161,7 +149,7 @@ const Navbar = () => {
     <div className="fixed w-full top-0 z-50 px-2 sm:px-4 pt-2 sm:pt-4">
       <nav
         className={`max-w-xl mx-auto rounded-xl sm:rounded-2xl transition-all duration-300 relative overflow-hidden ${
-          isContactPage || isPastHero
+          isContactPage || isTeamPage || isPastHero
             ? scrolled 
               ? "bg-white/95 backdrop-blur-sm shadow-lg border border-gray-200" 
               : "bg-white/90 backdrop-blur-sm shadow-md border border-gray-100"
@@ -170,7 +158,7 @@ const Navbar = () => {
               : "border border-white/15 shadow-xl"
         }`}
         style={
-          isContactPage || isPastHero
+          isContactPage || isTeamPage || isPastHero
             ? {}
             : {
                 background: scrolled
@@ -185,7 +173,7 @@ const Navbar = () => {
         }
       >
         {/* Apple liquid glass - multiple layered effects (only when not past hero and not on contact page) */}
-        {!isContactPage && !isPastHero && (
+        {!isContactPage && !isTeamPage && !isPastHero && (
           <>
             {/* Top shine/reflection */}
             <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white/40 via-white/10 to-transparent pointer-events-none opacity-60"></div>
@@ -223,13 +211,13 @@ const Navbar = () => {
             {isHomePage ? (
               <>
                 <NavLink href="#how-it-works">product</NavLink>
-                <NavLink href="#team">team</NavLink>
+                <NavLink to="/team">team</NavLink>
                 <NavLink to="/contact">contact</NavLink>
               </>
             ) : (
               <>
                 <NavLink href="#how-it-works" onClick={handleProductClick}>product</NavLink>
-                <NavLink href="#team" onClick={handleTeamClick}>team</NavLink>
+                <NavLink to="/team">team</NavLink>
                 {window.location.pathname === "/contact" ? (
                   <NavLink to="/contact">
                     contact
@@ -255,7 +243,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className={isContactPage || isPastHero ? "text-gray-700 focus:outline-none transition-transform duration-100" : "text-white focus:outline-none transition-transform duration-100"}
+              className={isContactPage || isTeamPage || isPastHero ? "text-gray-700 focus:outline-none transition-transform duration-100" : "text-white focus:outline-none transition-transform duration-100"}
               aria-label="Toggle menu"
             >
               <div className="relative w-6 h-6">
@@ -288,11 +276,11 @@ const Navbar = () => {
           }`}
         >
           <div 
-            className={isContactPage || isPastHero 
+            className={isContactPage || isTeamPage || isPastHero 
               ? "bg-white/95 backdrop-blur-sm border border-gray-200 mx-2 sm:mx-4 mb-4 p-4 rounded-xl shadow-lg relative overflow-hidden"
               : "border border-white/20 mx-2 sm:mx-4 mb-4 p-4 rounded-xl relative overflow-hidden"
             }
-            style={isContactPage || isPastHero 
+            style={isContactPage || isTeamPage || isPastHero 
               ? {}
               : {
                   background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(200, 220, 255, 0.12) 100%)',
@@ -303,7 +291,7 @@ const Navbar = () => {
             }
           >
             {/* Apple liquid glass - multiple layered effects (only when not past hero and not on contact page) */}
-            {!isContactPage && !isPastHero && (
+            {!isContactPage && !isTeamPage && !isPastHero && (
               <>
                 {/* Top shine/reflection */}
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/40 via-white/10 to-transparent pointer-events-none opacity-60"></div>
@@ -324,9 +312,7 @@ const Navbar = () => {
                   <MobileNavLink href="#how-it-works">
                     product
                   </MobileNavLink>
-                  <MobileNavLink href="#team">
-                    team
-                  </MobileNavLink>
+                  <MobileNavLink to="/team">team</MobileNavLink>
                   <MobileNavLink to="/contact">contact</MobileNavLink>
                 </>
               ) : (
@@ -337,26 +323,14 @@ const Navbar = () => {
                       closeMenu();
                       handleProductClick(e);
                     }}
-                    className={`relative ${isContactPage || isPastHero ? "text-gray-700 hover:text-black" : "text-white hover:text-white/80"} transition-colors duration-300 font-medium text-center text-lg py-1 group w-full text-left`}
+                    className={`relative ${isContactPage || isTeamPage || isPastHero ? "text-gray-700 hover:text-black" : "text-white hover:text-white/80"} transition-colors duration-300 font-medium text-center text-lg py-1 group w-full text-left`}
                   >
                     <span className="relative">
                       product
-                      <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${isContactPage || isPastHero ? "bg-accent" : "bg-white/60"} transition-all duration-300 group-hover:w-full`}></span>
+                      <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${isContactPage || isTeamPage || isPastHero ? "bg-accent" : "bg-white/60"} transition-all duration-300 group-hover:w-full`}></span>
                     </span>
                   </button>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      closeMenu();
-                      handleTeamClick(e);
-                    }}
-                    className={`relative ${isContactPage || isPastHero ? "text-gray-700 hover:text-black" : "text-white hover:text-white/80"} transition-colors duration-300 font-medium text-center text-lg py-1 group w-full text-left`}
-                  >
-                    <span className="relative">
-                      team
-                      <span className={`absolute -bottom-1 left-0 w-0 h-0.5 ${isContactPage || isPastHero ? "bg-accent" : "bg-white/60"} transition-all duration-300 group-hover:w-full`}></span>
-                    </span>
-                  </button>
+                  <MobileNavLink to="/team">team</MobileNavLink>
                   {window.location.pathname === "/contact" ? (
                     <MobileNavLink to="/contact">
                       contact

@@ -5,11 +5,8 @@ import ProblemSection from './components/problem_section';
 import ProblemMissionSection from './components/problem_mission_section';
 import FeaturesSection from './components/features_section';
 import HowItWorksSection from './components/how_it_works_section';
-import HowItStartedSection from './components/how_it_started_section';
 import CommunitySection from './components/community_section';
 import TrustedBackedSection from './components/trusted_backed_section';
-import FoundersSection from './components/founders_section';
-import AchievementsSection from './components/achievements_section';
 import LocationSection from './components/location_section';
 import DownloadSection from './components/download_section';
 import Footer from './components/footer';
@@ -127,11 +124,8 @@ function App() {
           <ProblemMissionSection />
           {/* <FeaturesSection /> */}
           <HowItWorksSection />
-          <HowItStartedSection />
           <CommunitySection />
           <TrustedBackedSection />
-          <FoundersSection />
-          <AchievementsSection />
           {/* <LocationSection /> */}
           <DownloadSection />
         </main>
