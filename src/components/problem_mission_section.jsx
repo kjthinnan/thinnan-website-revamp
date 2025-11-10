@@ -7,11 +7,9 @@ import feature5 from '../assets/images/features/feature_5.png';
 
 const ProblemMissionSection = () => {
   const [currentCard, setCurrentCard] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const featureImages = [
-    // { id: 1, image: feature1, alt: 'Thinnan Feature 1' },
-    // { id: 2, image: feature2, alt: 'Thinnan Feature 2' },
-    // { id: 3, image: feature3, alt: 'Thinnan Feature 3' },
     { id: 4, image: feature4, alt: 'Thinnan Feature 4' },
     { id: 5, image: feature5, alt: 'Thinnan Feature 5' },
   ];
@@ -19,32 +17,130 @@ const ProblemMissionSection = () => {
   // Auto-rotate through feature images
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentCard((prev) => (prev + 1) % featureImages.length);
-    }, 4000);
+      handleCardChange((prev) => (prev + 1) % featureImages.length);
+    }, 5000);
 
     return () => clearInterval(timer);
   }, [featureImages.length]);
 
-  const handleNext = () => {
-    setCurrentCard((prev) => (prev + 1) % featureImages.length);
+  const handleCardChange = (newCardOrFunction) => {
+    setIsTransitioning(true);
+    
+    // Small delay for smooth transition
+    setTimeout(() => {
+      if (typeof newCardOrFunction === 'function') {
+        setCurrentCard(newCardOrFunction);
+      } else {
+        setCurrentCard(newCardOrFunction);
+      }
+      
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 300);
   };
 
   return (
-    <section className="relative pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 md:pb-12 bg-background overflow-hidden">
+    <section className="relative py-20 sm:py-24 md:py-32 lg:py-40 bg-secondary overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left - Static Title Content */}
-          <div className="lg:col-span-1">
-            <div className="space-y-8">
-              {/* Meet Thinnan Title */}
-              <div className="inline-block">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-text mb-3 relative">
-                  meet thinnan.
-                </h2>
+        
+        {/* Main Content - Reversed Layout (Image Left, Text Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+          
+          {/* Left Side - Phone Screenshots */}
+          <div className="flex items-center justify-center lg:justify-start order-2 lg:order-1">
+            <div className="relative w-full max-w-[260px] sm:max-w-[300px] md:max-w-[340px]">
+              {/* Container with fixed aspect ratio matching how_it_works */}
+              <div className="relative" style={{ aspectRatio: '9/19.5' }}>
+                
+                {/* All images stacked with cross-fade effect */}
+                {featureImages.map((feature, index) => (
+                  <div
+                    key={feature.id}
+                    className="absolute inset-0 transition-all duration-700 ease-in-out"
+                    style={{
+                      opacity: index === currentCard ? 1 : 0,
+                      transform: index === currentCard 
+                        ? 'scale(1) translateY(0)' 
+                        : index < currentCard 
+                          ? 'scale(0.95) translateY(-20px)'
+                          : 'scale(0.95) translateY(20px)',
+                      zIndex: index === currentCard ? 10 : 5,
+                      pointerEvents: index === currentCard ? 'auto' : 'none',
+                    }}
+                  >
+                    <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/5">
+                      <img
+                        src={feature.image}
+                        alt={feature.alt}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      
+                      {/* Subtle gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent pointer-events-none"></div>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Decorative glow effect */}
+                <div 
+                  className="absolute inset-0 -z-10 blur-3xl opacity-20 transition-opacity duration-700"
+                  style={{
+                    background: 'radial-gradient(circle, #7C310A 0%, transparent 70%)',
+                    transform: 'scale(1.1)',
+                  }}
+                ></div>
               </div>
 
-              {/* Main Static Title */}
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-primary-text">
+              {/* Progress Dots - Below phone */}
+              <div className="flex justify-center gap-3 mt-8">
+                {featureImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setCurrentCard(index);
+                    }}
+                    className="transition-all duration-500 ease-out rounded-full hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    style={{
+                      width: index === currentCard ? '48px' : '12px',
+                      height: '12px',
+                      backgroundColor: index === currentCard ? '#7C310A' : '#D1D5DB',
+                      transition: 'all 500ms cubic-bezier(0.4, 0.0, 0.2, 1)',
+                    }}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Text Content */}
+          <div className="flex flex-col justify-center space-y-8 sm:space-y-10 order-1 lg:order-2">
+            
+            {/* Small heading with smooth transition */}
+            <div 
+              className="transition-all duration-500 ease-out"
+              style={{
+                opacity: isTransitioning ? 0.7 : 1,
+                transform: isTransitioning ? 'translateY(-10px)' : 'translateY(0)',
+              }}
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-text">
+                meet thinnan.
+              </h2>
+            </div>
+
+            {/* Main Title with smooth transition */}
+            <div 
+              className="transition-all duration-500 ease-out"
+              style={{
+                opacity: isTransitioning ? 0.7 : 1,
+                transform: isTransitioning ? 'translateY(-10px)' : 'translateY(0)',
+                transitionDelay: isTransitioning ? '0ms' : '100ms',
+              }}
+            >
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-primary-text">
                 We are bringing back the{' '}
                 <span className="relative inline-block">
                   <span className="text-primary relative z-10">social</span>
@@ -52,88 +148,50 @@ const ProblemMissionSection = () => {
                 </span>
                 {' '}to social media!
               </h2>
+            </div>
 
-              {/* Description */}
-              <p className="text-xl sm:text-2xl text-secondary-grey leading-relaxed max-w-xl">
+            {/* Description with smooth transition */}
+            <div 
+              className="transition-all duration-500 ease-out"
+              style={{
+                opacity: isTransitioning ? 0.7 : 1,
+                transform: isTransitioning ? 'translateY(-10px)' : 'translateY(0)',
+                transitionDelay: isTransitioning ? '0ms' : '200ms',
+              }}
+            >
+              <p className="text-lg sm:text-xl md:text-2xl text-secondary-grey leading-relaxed max-w-xl">
                 Food social media designed for{' '}
                 <span className="text-primary font-semibold">real-life experiences</span>{' '}
                 around food.
               </p>
-
-              {/* Download Button */}
-              <div className="pt-4">
-                <a
-                  href="https://thinnan.page.link/download"
-                  className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-primary text-white rounded-3xl font-semibold text-lg hover:bg-primary/90 transition-all duration-500 shadow-2xl hover:shadow-primary/30 transform hover:scale-105 group"
-                  style={{ transition: 'all 500ms cubic-bezier(0.4, 0.0, 0.2, 1)' }}
-                >
-                  <span>Download Now</span>
-                  <svg 
-                    className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </a>
-              </div>
             </div>
-          </div>
 
-          {/* Right - Simple Feature Images Carousel */}
-          <div className="lg:col-span-1">
-            <div className="relative flex items-center justify-center">
-              {/* Image Container with Transitions */}
-              <div 
-                className="relative w-full max-w-sm mx-auto cursor-pointer group transform transition-transform duration-700 hover:scale-105"
-                onClick={handleNext}
+            {/* Download Button with smooth transition */}
+            <div 
+              className="pt-4 transition-all duration-500 ease-out"
+              style={{
+                opacity: isTransitioning ? 0.7 : 1,
+                transform: isTransitioning ? 'translateY(-10px)' : 'translateY(0)',
+                transitionDelay: isTransitioning ? '0ms' : '300ms',
+              }}
+            >
+              <a
+                href="https://thinnan.page.link/download"
+                className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-primary text-white rounded-2xl sm:rounded-3xl font-semibold text-base sm:text-lg hover:bg-primary/90 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-primary/30 transform hover:scale-105 group"
               >
-                {/* Images with Fade Transition - Similar to how_it_works_section */}
-                {featureImages.map((feature, index) => (
-                  <div
-                    key={feature.id}
-                    className={`transition-opacity duration-1000 ${
-                      index === currentCard ? 'opacity-100' : 'opacity-0 absolute inset-0'
-                    }`}
-                    style={{
-                      transition: 'opacity 1000ms cubic-bezier(0.4, 0.0, 0.2, 1)',
-                      position: index === currentCard ? 'relative' : 'absolute',
-                    }}
-                  >
-                    <img
-                      src={feature.image}
-                      alt={feature.alt}
-                      className="w-full h-auto"
-                    />
-                  </div>
-                ))}
-                
-              </div>
-
-              {/* Progress Dots */}
-              <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 flex gap-2.5 mt-8">
-                {featureImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentCard(index);
-                    }}
-                    className="transition-all duration-700 rounded-full hover:scale-110"
-                    style={{
-                      width: index === currentCard ? '40px' : '10px',
-                      height: '10px',
-                      // Use brown color codes for both active and inactive dots
-                      backgroundColor: index === currentCard ? '#8B5C2A' : '#C6A274',
-                      transition: 'all 700ms cubic-bezier(0.4, 0.0, 0.2, 1)',
-                    }}
-                    aria-label={`Go to image ${index + 1}`}
-                  ></button>
-                ))}
-              </div>
+                <span>Download Now</span>
+                <svg 
+                  className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
             </div>
           </div>
+
         </div>
       </div>
     </section>
