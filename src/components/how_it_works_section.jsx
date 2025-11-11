@@ -13,6 +13,7 @@ const HowItWorksSection = () => {
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
+  const videoRefs = useRef({});
 
   const steps = [
     {
@@ -114,6 +115,15 @@ const HowItWorksSection = () => {
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !isInView) return;
+
+    // Pause and unload previous videos to save memory
+    Object.keys(videoRefs.current).forEach(key => {
+      const idx = parseInt(key);
+      if (idx !== currentStep && videoRefs.current[key]) {
+        videoRefs.current[key].pause();
+        videoRefs.current[key].currentTime = 0;
+      }
+    });
 
     // Small delay to ensure smooth transition
     setTimeout(() => {
@@ -240,31 +250,45 @@ const HowItWorksSection = () => {
                 style={{ aspectRatio: '720/898' }}
               >
                 {/* Video Stack with Cross-fade */}
-                {steps.map((step, index) => (
-                  <div
-                    key={step.id}
-                    className="absolute inset-0 transition-all duration-500 ease-in-out"
-                    style={{
-                      opacity: index === currentStep ? 1 : 0,
-                      transform: index === currentStep 
-                        ? 'scale(1)' 
-                        : index < currentStep 
-                          ? 'scale(0.95)'
-                          : 'scale(1.05)',
-                      zIndex: index === currentStep ? 10 : 5,
-                      pointerEvents: index === currentStep ? 'auto' : 'none',
-                    }}
-                  >
-                    <video
-                      ref={index === currentStep ? videoRef : null}
-                      src={step.video}
-                      className="w-full h-full object-cover"
-                      playsInline
-                      muted
-                      preload="auto"
-                    />
-                  </div>
-                ))}
+                {steps.map((step, index) => {
+                  const isActive = index === currentStep;
+                  const isAdjacent = Math.abs(index - currentStep) <= 1;
+                  const shouldLoad = isActive || (isInView && isAdjacent);
+
+                  return (
+                    <div
+                      key={step.id}
+                      className="absolute inset-0 transition-all duration-500 ease-in-out"
+                      style={{
+                        opacity: isActive ? 1 : 0,
+                        transform: isActive 
+                          ? 'scale(1)' 
+                          : index < currentStep 
+                            ? 'scale(0.95)'
+                            : 'scale(1.05)',
+                        zIndex: isActive ? 10 : 5,
+                        pointerEvents: isActive ? 'auto' : 'none',
+                      }}
+                    >
+                      {shouldLoad && (
+                        <video
+                          ref={(el) => {
+                            if (isActive) {
+                              videoRef.current = el;
+                            }
+                            videoRefs.current[index] = el;
+                          }}
+                          src={step.video}
+                          className="w-full h-full object-cover"
+                          playsInline
+                          muted
+                          preload={isActive ? "auto" : "metadata"}
+                          loading="lazy"
+                        />
+                      )}
+                    </div>
+                  );
+                })}
 
                 {/* Subtle gradient overlay for depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>

@@ -14,6 +14,8 @@ const HeroSection = () => {
             loop
             muted
             playsInline
+            preload="metadata"
+            loading="lazy"
             className="absolute inset-0 w-full h-full object-cover"
           >
             <source src={foodVideo} type="video/mp4" />

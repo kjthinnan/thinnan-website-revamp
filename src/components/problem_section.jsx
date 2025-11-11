@@ -125,7 +125,7 @@ const ProblemSection = () => {
                 fontFamily: 'Manrope, sans-serif',
                 letterSpacing: '-0.018em',
                 fontWeight: 900,
-                fontSize: 'clamp(4rem, 14vw, 13rem)',
+                fontSize: 'clamp(4rem, 14vw, 11rem)',
                 display: 'block',
                 maxWidth: '100%',
                 wordBreak: 'break-all',
