@@ -1,4 +1,4 @@
-import foodVideo from '../assets/videos/food_video.mp4';
+import foodVideo from '../assets/videos/food_video.webm';
 import thinnanLogo from '../assets/images/thinnan_logo.png';
 
 const HeroSection = () => {

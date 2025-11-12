@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import section1 from '../assets/videos/how_it_works/section_1.mp4';
-import section2 from '../assets/videos/how_it_works/section_2.mp4';
-import section3 from '../assets/videos/how_it_works/section_3.mp4';
-import section4 from '../assets/videos/how_it_works/section_4.mp4';
-import section5 from '../assets/videos/how_it_works/section_5.mp4';
-import section6 from '../assets/videos/how_it_works/section_6.mp4';
+import section1 from '../assets/videos/how_it_works/section_1.webm';
+import section2 from '../assets/videos/how_it_works/section_2.webm';
+import section3 from '../assets/videos/how_it_works/section_3.webm';
+import section4 from '../assets/videos/how_it_works/section_4.webm';
+import section5 from '../assets/videos/how_it_works/section_5.webm';
+import section6 from '../assets/videos/how_it_works/section_6.webm';
 
 const HowItWorksSection = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -175,7 +175,7 @@ const HowItWorksSection = () => {
     <section 
       ref={sectionRef}
       id="how-it-works" 
-      className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-20 sm:pb-28 md:pb-36 lg:pb-44 relative overflow-hidden bg-background"
+      className="pt-48 sm:pt-36 md:pt-40 lg:pt-48 pb-20 sm:pb-28 md:pb-36 lg:pb-44 relative overflow-hidden bg-background"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 relative z-10">
         {/* Main Content - Horizontal Layout */}

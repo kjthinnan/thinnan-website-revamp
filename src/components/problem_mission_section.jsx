@@ -37,43 +37,31 @@ const ProblemMissionSection = () => {
   };
 
   return (
-    <section className="relative py-20 sm:py-28 md:py-36 lg:py-44 bg-secondary overflow-hidden">
+    <section className="relative py-14 sm:py-20 md:py-28 lg:py-32 bg-secondary overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 relative z-10">
         {/* Main Content - Reversed Layout (Image Left, Text Right) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Side - Phone Screenshots */}
           <div className="flex items-center justify-center lg:justify-start order-2 lg:order-1">
             <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px]">
-              {/* Container with fixed aspect ratio matching how_it_works */}
-              <div className="relative" style={{ aspectRatio: '9/19.5' }}>
-                {/* All images stacked with cross-fade effect */}
-                {featureImages.map((feature, index) => (
-                  <div
-                    key={feature.id}
-                    className="absolute inset-0 transition-all duration-700 ease-in-out"
-                    style={{
-                      opacity: index === currentCard ? 1 : 0,
-                      transform: index === currentCard 
-                        ? 'scale(1) translateY(0)' 
-                        : index < currentCard 
-                          ? 'scale(0.95) translateY(-20px)'
-                          : 'scale(0.95) translateY(20px)',
-                      zIndex: index === currentCard ? 10 : 5,
-                      pointerEvents: index === currentCard ? 'auto' : 'none',
-                    }}
-                  >
-                    <div className="relative w-full h-full">
-                      <img
-                        src={feature.image}
-                        alt={feature.alt}
-                        className="w-full h-full object-contain"
-                        style={{ objectPosition: 'center' }}
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              {/* All images stacked with cross-fade effect */}
+              {featureImages.map((feature, index) => (
+                <img
+                  key={feature.id}
+                  src={feature.image}
+                  alt={feature.alt}
+                  className="w-full h-auto transition-opacity duration-700 ease-in-out"
+                  style={{
+                    opacity: index === currentCard ? 1 : 0,
+                    position: index === currentCard ? 'relative' : 'absolute',
+                    top: index === currentCard ? 'auto' : 0,
+                    left: index === currentCard ? 'auto' : 0,
+                    zIndex: index === currentCard ? 10 : 5,
+                    pointerEvents: index === currentCard ? 'auto' : 'none',
+                  }}
+                  loading="lazy"
+                />
+              ))}
               {/* Progress Dots - Below phone */}
               <div className="flex justify-center gap-3 mt-8">
                 {featureImages.map((_, index) => (

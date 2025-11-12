@@ -5,8 +5,8 @@ import { resolve } from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // Handle uppercase image extensions
-  assetsInclude: ['**/*.JPG', '**/*.JPEG', '**/*.PNG', '**/*.GIF', '**/*.SVG'],
+  // Handle uppercase image extensions and video files
+  assetsInclude: ['**/*.JPG', '**/*.JPEG', '**/*.PNG', '**/*.GIF', '**/*.SVG', '**/*.webm', '**/*.mp4', '**/*.WEBM', '**/*.MP4'],
   build: {
     // Generate source maps for better debugging
     sourcemap: true,
@@ -21,6 +21,8 @@ export default defineConfig({
             extType = 'img';
           } else if (/woff|woff2|eot|ttf|otf/i.test(extType)) {
             extType = 'fonts';
+          } else if (/webm|mp4|mov|avi/i.test(extType)) {
+            extType = 'videos';
           }
           return `assets/${extType}/[name]-[hash][extname]`;
         },
