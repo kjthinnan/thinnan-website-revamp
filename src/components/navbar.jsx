@@ -84,16 +84,16 @@ const Navbar = () => {
   const isContactPage = window.location.pathname === "/contact";
   const isTeamPage = window.location.pathname === "/team";
 
-  // Handle navigation to how-it-works section from other pages
+  // Handle navigation to product section from other pages
   const handleProductClick = (e) => {
     if (!isHomePage) {
       e.preventDefault();
       navigate('/');
-      // Wait for navigation to complete, then scroll to how-it-works section
+      // Wait for navigation to complete, then scroll to product section
       setTimeout(() => {
-        const howItWorksSection = document.getElementById('how-it-works');
-        if (howItWorksSection) {
-          howItWorksSection.scrollIntoView({ behavior: 'smooth' });
+        const productSection = document.getElementById('product');
+        if (productSection) {
+          productSection.scrollIntoView({ behavior: 'smooth' });
         }
       }, 200);
     }
@@ -244,13 +244,13 @@ const Navbar = () => {
           <div className="hidden md:flex flex-1 max-w-xl mx-auto justify-evenly items-center">
             {isHomePage ? (
               <>
-                <NavLink href="#how-it-works">product</NavLink>
+                <NavLink href="#product">product</NavLink>
                 <NavLink to="/team">team</NavLink>
                 <NavLink to="/contact">contact</NavLink>
               </>
             ) : (
               <>
-                <NavLink href="#how-it-works" onClick={handleProductClick}>product</NavLink>
+                <NavLink href="#product" onClick={handleProductClick}>product</NavLink>
                 <NavLink to="/team">team</NavLink>
                 {window.location.pathname === "/contact" ? (
                   <NavLink to="/contact">
@@ -343,7 +343,7 @@ const Navbar = () => {
             <div className="flex flex-col space-y-4 relative z-10">
               {isHomePage ? (
                 <>
-                  <MobileNavLink href="#how-it-works">
+                  <MobileNavLink href="#product">
                     product
                   </MobileNavLink>
                   <MobileNavLink to="/team">team</MobileNavLink>

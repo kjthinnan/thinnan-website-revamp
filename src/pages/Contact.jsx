@@ -120,7 +120,7 @@ const Contact = () => {
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-3 sm:mb-4 relative inline-block">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-3 sm:mb-4 relative inline-block">
               we are all eyes and ears
               <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent"></div>
             </h1>
@@ -167,11 +167,11 @@ const Contact = () => {
 
                   {/* Text Content - Middle Section */}
                   <div className="flex-1 flex flex-col space-y-2 sm:space-y-3 md:space-y-4 min-w-0">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black group-hover:text-accent transition-colors duration-300">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black group-hover:text-accent transition-colors duration-300">
                       {founder.name}
                     </h2>
                     
-                    <p className="text-sm sm:text-base md:text-lg text-black">
+                    <p className="text-lg sm:text-xl md:text-2xl text-black">
                       {founder.role}
                     </p>
 
@@ -242,7 +242,7 @@ const Contact = () => {
               help us to improve thinnan!
               <div className="absolute -bottom-3 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full"></div>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-secondary-grey mt-6 sm:mt-8 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-secondary-grey mt-6 sm:mt-8 max-w-2xl mx-auto">
               Your feedback shapes our journey. Share bugs or request features to make Thinnan better for everyone.
             </p>
           </div>
@@ -466,31 +466,35 @@ const Contact = () => {
                 }`}
                 style={{ transitionDelay: '100ms' }}
               >
-                join us in building the most
-                <br className="hidden sm:block" />
-                <span className="block h-1.5 sm:h-2"></span>
-                loved platform of the world
+                join us in building the most loved platform of the world
               </h2>
               <p 
-                className={`text-base sm:text-lg md:text-xl text-secondary-grey mb-2 transition-all duration-1000 ${
+                className={`text-lg sm:text-xl md:text-2xl text-secondary-grey mb-6 sm:mb-8 transition-all duration-1000 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
                 style={{ transitionDelay: '200ms' }}
               >
-                send us your interest to
+                We're always looking for passionate people to join our mission.
               </p>
-              <a 
-                href="mailto:info@thinnan.com"
-                className={`text-base sm:text-lg md:text-xl text-secondary-grey hover:text-accent transition-all duration-300 inline-block group ${
+              <div 
+                className={`transition-all duration-1000 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
                 style={{ transitionDelay: '300ms' }}
               >
-                <span className="relative">
-                  info@thinnan.com
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-                </span>
-              </a>
+                <a 
+                  href="mailto:info@thinnan.com"
+                  className="group inline-flex items-center gap-3 text-lg sm:text-xl md:text-2xl text-primary-text hover:text-accent transition-all duration-300"
+                >
+                  <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span className="relative font-semibold">
+                    info@thinnan.com
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+                  </span>
+                </a>
+              </div>
             </div>
 
             {/* Bottom Section - Location */}
@@ -501,7 +505,7 @@ const Contact = () => {
               style={{ transitionDelay: '400ms' }}
             >
               <h3 
-                className={`text-xl sm:text-2xl md:text-3xl font-bold text-primary-text mb-4 sm:mb-6 transition-all duration-1000 ${
+                className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary-text mb-4 sm:mb-6 transition-all duration-1000 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
                 style={{ transitionDelay: '500ms' }}
@@ -512,7 +516,7 @@ const Contact = () => {
                 {['maria 01', 'Lapinlahdenkatu 16, 00180', 'Helsinki'].map((line, index) => (
                   <p 
                     key={index}
-                    className={`text-base sm:text-lg md:text-xl text-secondary-grey transition-all duration-1000 ${
+                    className={`text-lg sm:text-xl md:text-2xl text-secondary-grey transition-all duration-1000 ${
                       isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'
                     }`}
                     style={{ transitionDelay: `${600 + index * 100}ms` }}

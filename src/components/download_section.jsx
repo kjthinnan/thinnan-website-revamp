@@ -26,10 +26,10 @@ const DownloadSection = () => {
           <div className="text-white relative text-center md:text-left">
             <div className="absolute -top-10 -left-10 w-32 h-32 bg-accent/20 rounded-full opacity-40 blur-2xl"></div>
             
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 md:mb-12 relative leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-10 relative leading-snug">
               your social life,<br/>
               back in real life.<br/>
-              <span className="mt-8 block">download thinnan now!</span>
+              <span className="mt-6 block">download thinnan now!</span>
             </h2>
             
             <div className="mt-16 md:mt-20 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
@@ -61,30 +61,22 @@ const DownloadSection = () => {
           
           <div className="relative mt-10 md:mt-0">
             <div className="flex justify-center md:justify-end">
-              <div className="relative w-[300px] h-[620px] bg-gradient-to-b from-black to-gray-dark rounded-[40px] p-3 overflow-hidden shadow-2xl border border-white/10 z-10">
                 {/* Phone frame details - removed transform hover effect */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-2xl"></div>
                 
-                <div className="bg-black h-full w-full rounded-[35px] overflow-hidden border border-white/10 relative">
-                  {/* App content will be displayed here */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-accent/30 to-transparent opacity-30 mix-blend-overlay"></div>
+             
                   
                   {/* App screenshot image */}
                   <img 
                     src={downloadScreenshot} 
                     alt="thinnan app screenshot" 
-                    className="h-full w-full object-cover"
+                    className="h-[700px] w-auto max-w-[350px] object-cover mx-auto"
                   />
-                  
-                  {/* App reflection */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/40 opacity-50"></div>
-                  <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white/10 to-transparent"></div>
-                </div>
+
                 
                 {/* Decorative elements */}
                 <div className="absolute -right-16 -bottom-16 w-32 h-32 bg-accent opacity-30 rounded-full blur-xl"></div>
                 <div className="absolute -left-12 -top-12 w-24 h-24 bg-accent opacity-20 rounded-full blur-xl"></div>
-              </div>
+
               
               {/* Background phone shadow for depth */}
               <div className="absolute top-8 -right-8 w-[300px] h-[620px] bg-black/30 rounded-[40px] blur-xl -z-10 hidden lg:block"></div>

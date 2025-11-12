@@ -127,11 +127,11 @@ const HowItStartedSection = () => {
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-text mb-4 sm:mb-6 relative inline-block">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-text mb-4 sm:mb-6 relative inline-block">
             how it all started
             <div className="absolute -bottom-3 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full"></div>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-secondary-grey mt-8 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-secondary-grey mt-8 max-w-3xl mx-auto">
             every great journey has a beginning. this is ours — told through moments that shaped thinnan.
           </p>
         </div>

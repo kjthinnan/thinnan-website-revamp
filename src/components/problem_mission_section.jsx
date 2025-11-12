@@ -3,7 +3,7 @@ import feature4 from '../assets/images/features/feature_4.png';
 
 const ProblemMissionSection = () => {
   return (
-    <section className="relative py-14 sm:py-20 md:py-28 lg:py-32 bg-secondary overflow-hidden">
+    <section id="product" className="relative py-14 sm:py-20 md:py-28 lg:py-32 bg-secondary overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 relative z-10">
         {/* Main Content - Reversed Layout (Image Left, Text Right) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">

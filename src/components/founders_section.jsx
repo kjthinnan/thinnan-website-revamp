@@ -126,7 +126,7 @@ const FoundersSection = () => {
             meet the team
             <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-secondary-grey mt-6 sm:mt-8 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-secondary-grey mt-6 sm:mt-8 max-w-2xl mx-auto">
             The passionate people behind thinnan bringing joy through shared meals
           </p>
         </div>

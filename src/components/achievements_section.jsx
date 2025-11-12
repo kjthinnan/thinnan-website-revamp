@@ -137,7 +137,7 @@ const AchievementsSection = () => {
               <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent"></div>
             </h2>
           </div>
-          <p className="text-lg sm:text-xl text-gray-600 mt-6 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mt-6 max-w-2xl mx-auto">
             Milestones that mark our journey in connecting food lovers
           </p>
         </div>

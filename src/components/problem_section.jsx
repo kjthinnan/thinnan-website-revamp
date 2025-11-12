@@ -176,10 +176,10 @@ const ProblemSection = () => {
             }}
           >
             <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-primary-text leading-tight">
-              billion people
+              people crave
             </p>
             <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-primary-text leading-tight">
-              long for in-person experiences!
+              in-person experiences!
             </p>
           </div>
         </div>
