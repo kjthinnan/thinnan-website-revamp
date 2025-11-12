@@ -25,31 +25,31 @@ const HowItWorksSection = () => {
     {
       id: 1,
       video: section2,
-      title: 'crave',
+      title: 'share your craving',
       subtitle: 'Share what you\'re craving right now',
     },
     {
       id: 2,
       video: section3,
-      title: 'cravings matched',
+      title: 'match your cravings',
       subtitle: 'Find friends who want the same thing',
     },
     {
       id: 3,
       video: section4,
-      title: 'open up a chat',
+      title: 'open up a group chat',
       subtitle: 'Start the conversation with matched people',
     },
     {
       id: 4,
       video: section5,
-      title: 'plan eatout/cookout',
+      title: 'make plans together',
       subtitle: 'Make it happen together',
     },
     {
       id: 5,
       video: section6,
-      title: 'share stories',
+      title: 'share your stories',
       subtitle: 'Capture and share your food adventures',
     }
   ];
@@ -161,6 +161,16 @@ const HowItWorksSection = () => {
     }
   };
 
+  const goToPrevious = () => {
+    const prevStep = currentStep === 0 ? steps.length - 1 : currentStep - 1;
+    goToStep(prevStep);
+  };
+
+  const goToNext = () => {
+    const nextStep = (currentStep + 1) % steps.length;
+    goToStep(nextStep);
+  };
+
   return (
     <section 
       ref={sectionRef}
@@ -172,72 +182,85 @@ const HowItWorksSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
           {/* Left Side - Text Content */}
-          <div className="flex flex-col justify-center space-y-8 sm:space-y-10 order-1 lg:order-1">
+          <div className="flex flex-col justify-center order-1 lg:order-1">
             
-            {/* Title */}
-            <div>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-primary-text">
+            {/* Small heading - Fixed */}
+            <div className="mb-8 sm:mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary-text">
                 how does it work?
               </h2>
             </div>
 
-            {/* Step Indicator with smooth transition */}
-            <div 
-              className="transition-all duration-500 ease-out"
-              style={{
-                opacity: isTransitioning ? 0 : 1,
-                transform: isTransitioning ? 'translateY(-10px)' : 'translateY(0)',
-              }}
-            >
-              <p className="text-lg sm:text-xl md:text-2xl font-semibold text-primary">
-                step {currentStep + 1}
-              </p>
+            {/* Content area with fixed height to prevent shifting */}
+            <div className="min-h-[350px] sm:min-h-[380px] md:min-h-[420px] flex flex-col justify-start">
+              {/* Main Title with smooth transition */}
+              <div 
+                className="transition-all duration-500 ease-out mb-6 sm:mb-8"
+                style={{
+                  opacity: isTransitioning ? 0 : 1,
+                  transform: isTransitioning ? 'translateY(-10px)' : 'translateY(0)',
+                }}
+              >
+                <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-primary-text">
+                  {steps[currentStep].title}
+                </h3>
+              </div>
+
+              {/* Subtitle with smooth transition */}
+              <div 
+                className="transition-all duration-500 ease-out mb-6 sm:mb-8"
+                style={{
+                  opacity: isTransitioning ? 0 : 1,
+                  transform: isTransitioning ? 'translateY(-10px)' : 'translateY(0)',
+                  transitionDelay: isTransitioning ? '0ms' : '100ms',
+                }}
+              >
+                <p className="text-lg sm:text-xl md:text-2xl text-secondary-grey leading-relaxed max-w-xl">
+                  {steps[currentStep].subtitle}
+                </p>
+              </div>
             </div>
 
-            {/* Title with smooth transition */}
-            <div 
-              className="transition-all duration-500 ease-out"
-              style={{
-                opacity: isTransitioning ? 0 : 1,
-                transform: isTransitioning ? 'translateY(-10px)' : 'translateY(0)',
-                transitionDelay: isTransitioning ? '0ms' : '100ms',
-              }}
-            >
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-primary-text">
-                {steps[currentStep].title}
-              </h3>
-            </div>
+            {/* Navigation Arrows - Fixed at bottom */}
+            <div className="flex items-center gap-4">
+              {/* Previous Arrow */}
+              <button
+                onClick={goToPrevious}
+                className="group flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 hover:bg-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                aria-label="Previous step"
+              >
+                <svg 
+                  className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300 transform group-hover:-translate-x-0.5" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
 
-            {/* Subtitle with smooth transition */}
-            <div 
-              className="transition-all duration-500 ease-out"
-              style={{
-                opacity: isTransitioning ? 0 : 1,
-                transform: isTransitioning ? 'translateY(-10px)' : 'translateY(0)',
-                transitionDelay: isTransitioning ? '0ms' : '200ms',
-              }}
-            >
-              <p className="text-lg sm:text-xl md:text-2xl text-secondary-grey leading-relaxed">
-                {steps[currentStep].subtitle}
-              </p>
-            </div>
+              {/* Step Counter */}
+              <div className="flex items-center gap-2 px-4 py-2 bg-primary/5 rounded-full">
+                <span className="text-base font-semibold text-primary">
+                  {currentStep + 1} / {steps.length}
+                </span>
+              </div>
 
-            {/* Navigation Dots */}
-            <div className="flex gap-3 pt-4">
-              {steps.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToStep(index)}
-                  className="transition-all duration-500 ease-out rounded-full hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  style={{
-                    width: index === currentStep ? '48px' : '12px',
-                    height: '12px',
-                    backgroundColor: index === currentStep ? '#7C310A' : '#D1D5DB',
-                    transition: 'all 500ms cubic-bezier(0.4, 0.0, 0.2, 1)',
-                  }}
-                  aria-label={`Go to step ${index + 1}`}
-                />
-              ))}
+              {/* Next Arrow */}
+              <button
+                onClick={goToNext}
+                className="group flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 hover:bg-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                aria-label="Next step"
+              >
+                <svg 
+                  className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300 transform group-hover:translate-x-0.5" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           </div>
 

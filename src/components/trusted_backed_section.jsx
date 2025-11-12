@@ -51,32 +51,22 @@ const TrustedBackedSection = () => {
           </p>
         </div>
 
-        {/* Logos in a single static row */}
+        {/* Logos in a single static row, plain images only, larger size */}
         <div className="flex justify-center items-center gap-4 sm:gap-5 md:gap-6 lg:gap-8">
           {logos.map((logo, index) => (
-            <div
+            <img
               key={logo.id}
-              className={`flex-shrink-0 transition-all duration-1000 ${
+              src={logo.image}
+              alt={logo.name}
+              className={`w-auto h-16 sm:h-20 md:h-24 lg:h-28 object-contain transition-all duration-1000 ${
                 isLoaded 
                   ? 'opacity-100 translate-y-0 scale-100' 
                   : 'opacity-0 translate-y-8 scale-95'
               }`}
-              style={{ 
-                transitionDelay: `${index * 150}ms` 
+              style={{
+                transitionDelay: `${index * 150}ms`
               }}
-            >
-              {/* Slightly larger logo container */}
-              <div className="group relative bg-white rounded-xl sm:rounded-2xl md:rounded-3xl px-5 sm:px-6 md:px-7 lg:px-10 py-4 sm:py-5 md:py-6 lg:py-8 border border-gray-200 hover:border-accent/30 hover:shadow-lg transition-all duration-300 cursor-pointer">
-                {/* Logo Image - slightly increased heights */}
-                <div className="flex items-center justify-center">
-                  <img 
-                    src={logo.image} 
-                    alt={logo.name}
-                    className="w-auto h-12 sm:h-14 md:h-16 lg:h-20 object-contain"
-                  />
-                </div>
-              </div>
-            </div>
+            />
           ))}
         </div>
 
