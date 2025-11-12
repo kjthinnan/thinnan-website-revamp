@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import './index.css'
 import App from './App.jsx'
-import AllAchievements from './pages/AllAchievements.jsx'
 import Contact from './pages/Contact.jsx'
 import Team from './pages/team.jsx'
 
@@ -29,7 +28,6 @@ createRoot(document.getElementById('root')).render(
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/achievements" element={<AllAchievements />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/team" element={<Team />} />
       </Routes>
