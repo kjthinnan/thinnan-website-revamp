@@ -141,10 +141,10 @@ const Contact = () => {
                 }}
               >
                 {/* Founder Card - Horizontal Layout */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 md:gap-8 p-4 sm:p-6 rounded-xl sm:rounded-2xl hover:bg-white/50 transition-all duration-500">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start sm:items-center gap-4 sm:gap-6 md:gap-8 p-4 sm:p-6 rounded-xl sm:rounded-2xl hover:bg-white/50 transition-all duration-500">
                   {/* Profile Image Container */}
                   <div className="relative w-full sm:w-auto flex-shrink-0">
-                    <div className="relative w-full max-w-[200px] sm:max-w-[240px] md:max-w-[280px] mx-auto sm:mx-0 rounded-lg sm:rounded-xl overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-500" style={{ aspectRatio: '4 / 5' }}>
+                    <div className="relative w-full max-w-[280px] sm:max-w-[240px] md:max-w-[280px] mx-auto sm:mx-0 rounded-2xl sm:rounded-xl overflow-hidden shadow-xl sm:shadow-lg group-hover:shadow-2xl sm:group-hover:shadow-xl transition-all duration-500" style={{ aspectRatio: '4 / 5' }}>
                       <img 
                         src={founder.image}
                         alt={founder.name}
@@ -162,11 +162,24 @@ const Contact = () => {
                       
                       {/* Gradient overlay on hover */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      {/* LinkedIn Icon - Top Right on Mobile, Hidden on Desktop */}
+                      <a 
+                        href={founder.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="absolute top-3 right-3 sm:hidden bg-white rounded-full p-2.5 shadow-lg hover:bg-accent hover:text-white transition-all duration-300 z-10 transform hover:scale-110"
+                      >
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                      </a>
                     </div>
                   </div>
 
                   {/* Text Content - Middle Section */}
-                  <div className="flex-1 flex flex-col space-y-2 sm:space-y-3 md:space-y-4 min-w-0">
+                  <div className="flex-1 flex flex-col space-y-2 sm:space-y-3 md:space-y-4 min-w-0 text-center sm:text-left">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black group-hover:text-accent transition-colors duration-300">
                       {founder.name}
                     </h2>
@@ -180,7 +193,7 @@ const Contact = () => {
                       href={founder.calLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2 sm:py-2.5 bg-accent/10 hover:bg-accent text-black hover:text-white rounded-xl sm:rounded-2xl transition-all duration-300 font-semibold text-xs sm:text-sm md:text-base group/link w-fit shadow-sm hover:shadow-lg transform hover:scale-105"
+                      className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2 sm:py-2.5 bg-accent/10 hover:bg-accent text-black hover:text-white rounded-xl sm:rounded-2xl transition-all duration-300 font-semibold text-xs sm:text-sm md:text-base group/link w-fit mx-auto sm:mx-0 shadow-sm hover:shadow-lg transform hover:scale-105"
                     >
                       <svg 
                         className="w-4 h-4 sm:w-5 sm:h-5" 
@@ -202,16 +215,16 @@ const Contact = () => {
                     </a>
                   </div>
 
-                  {/* LinkedIn Icon - Far Right */}
-                  <div className="flex-shrink-0">
+                  {/* LinkedIn Icon - Far Right (Desktop Only) */}
+                  <div className="flex-shrink-0 hidden sm:block">
                     <a 
                       href={founder.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white rounded-full p-2 shadow-lg hover:bg-accent hover:text-white transition-all duration-300 transform hover:scale-110 group/linkedin"
+                      className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-white rounded-full p-2 shadow-lg hover:bg-accent hover:text-white transition-all duration-300 transform hover:scale-110 group/linkedin"
                     >
-                      <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-6 h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                       </svg>
                     </a>
@@ -459,7 +472,7 @@ const Contact = () => {
             }`}
           >
             {/* Top Section - Join Us */}
-            <div className="mb-12 sm:mb-16 md:mb-20">
+            <div className="mb-12 sm:mb-16 md:mb-20 text-center sm:text-left">
               <h2 
                 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary-text mb-4 sm:mb-6 leading-tight transition-all duration-1000 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
@@ -477,7 +490,7 @@ const Contact = () => {
                 We're always looking for passionate people to join our mission.
               </p>
               <div 
-                className={`transition-all duration-1000 ${
+                className={`transition-all duration-1000 flex justify-center sm:justify-start ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
                 style={{ transitionDelay: '300ms' }}
@@ -499,7 +512,7 @@ const Contact = () => {
 
             {/* Bottom Section - Location */}
             <div 
-              className={`pt-8 sm:pt-12 md:pt-16 border-t border-gray-300 transition-all duration-1000 ${
+              className={`pt-8 sm:pt-12 md:pt-16 border-t border-gray-300 transition-all duration-1000 text-center sm:text-left ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{ transitionDelay: '400ms' }}
