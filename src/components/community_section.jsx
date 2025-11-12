@@ -138,31 +138,6 @@ const CommunitySection = () => {
             </div>
           ))}
         </div>
-
-        {/* Call to Action */}
-        <div 
-          className="text-center mt-16 sm:mt-20 transition-all duration-1000"
-          style={{
-            opacity: hasAnimated ? 1 : 0,
-            transform: hasAnimated ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '800ms',
-          }}
-        >
-          <a
-            href="https://thinnan.page.link/download"
-            className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-primary text-white rounded-2xl sm:rounded-3xl font-semibold text-base sm:text-lg hover:bg-primary/90 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-primary/30 transform hover:scale-105 group"
-          >
-            <span>Join Our Community</span>
-            <svg 
-              className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        </div>
       </div>
     </section>
   );

@@ -1,5 +1,12 @@
 import { useState, useEffect } from 'react';
 
+// Import backed/trusted logos
+import logoOne from '../assets/images/backed/one.png';
+import logoTwo from '../assets/images/backed/two.png';
+import logoThree from '../assets/images/backed/three.png';
+import logoFour from '../assets/images/backed/four.png';
+import logoFive from '../assets/images/backed/five.png';
+
 const TrustedBackedSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -9,17 +16,23 @@ const TrustedBackedSection = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Dummy logo data - replace with actual logos later
+  // Logo data with actual images
   const logos = [
-    { id: 1, name: "logo 1" },
-    { id: 2, name: "logo 2" },
-    { id: 3, name: "logo 3" },
-    { id: 4, name: "logo 4" },
-    { id: 5, name: "logo 5" }
+    { id: 1, name: "Partner 1", image: logoOne },
+    { id: 2, name: "Partner 2", image: logoTwo },
+    { id: 3, name: "Partner 3", image: logoThree },
+    { id: 4, name: "Partner 4", image: logoFour },
+    { id: 5, name: "Partner 5", image: logoFive }
   ];
 
   return (
     <section className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-20 sm:pb-28 md:pb-36 lg:pb-44 relative overflow-hidden bg-background">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 relative z-10">
         {/* Section Header */}
         <div 
@@ -30,13 +43,16 @@ const TrustedBackedSection = () => {
           <div className="inline-block">
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-text mb-3 relative lowercase">
               trusted & backed by
-              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent"></div>
+              <div className="absolute -bottom-2 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full"></div>
             </h2>
           </div>
+          <p className="text-base sm:text-lg md:text-xl text-secondary-grey mt-8 max-w-2xl mx-auto">
+            supported by world-class partners and advisors who believe in our vision
+          </p>
         </div>
 
-        {/* Logos Grid - Row, Non-scrollable, Wraps to new line */}
-        <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+        {/* Logos in a single static row */}
+        <div className="flex justify-center items-center gap-4 sm:gap-5 md:gap-6 lg:gap-8">
           {logos.map((logo, index) => (
             <div
               key={logo.id}
@@ -46,19 +62,34 @@ const TrustedBackedSection = () => {
                   : 'opacity-0 translate-y-8 scale-95'
               }`}
               style={{ 
-                transitionDelay: `${index * 100}ms` 
+                transitionDelay: `${index * 150}ms` 
               }}
             >
-              {/* Logo Placeholder - Cream background with brown accents */}
-              <div className="bg-secondary rounded-3xl sm:rounded-[2rem] md:rounded-[2.5rem] px-8 sm:px-10 md:px-12 lg:px-16 py-6 sm:py-8 md:py-10 lg:py-12 border-2 border-secondary hover:border-accent/30 hover:bg-accent/5 transition-all duration-300 group cursor-pointer shadow-sm hover:shadow-md min-w-[120px] sm:min-w-[140px] md:min-w-[160px] lg:min-w-[180px]">
-                <div className="text-center">
-                  <span className="text-sm sm:text-base md:text-lg font-medium text-primary-text group-hover:text-accent transition-colors duration-300">
-                    {logo.name}
-                  </span>
+              {/* Slightly larger logo container */}
+              <div className="group relative bg-white rounded-xl sm:rounded-2xl md:rounded-3xl px-5 sm:px-6 md:px-7 lg:px-10 py-4 sm:py-5 md:py-6 lg:py-8 border border-gray-200 hover:border-accent/30 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                {/* Logo Image - slightly increased heights */}
+                <div className="flex items-center justify-center">
+                  <img 
+                    src={logo.image} 
+                    alt={logo.name}
+                    className="w-auto h-12 sm:h-14 md:h-16 lg:h-20 object-contain"
+                  />
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Optional: Trust statement */}
+        <div 
+          className={`mt-16 sm:mt-20 md:mt-24 text-center transition-all duration-1000 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+          style={{ transitionDelay: '800ms' }}
+        >
+          <p className="text-sm sm:text-base text-secondary-grey italic">
+            building the future of social dining together
+          </p>
         </div>
       </div>
     </section>

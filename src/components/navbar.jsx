@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import appIcon from '../assets/icons/app_icon.png';
+import { handleAppDownload } from '../utils/getStoreLink';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -264,12 +265,12 @@ const Navbar = () => {
 
           {/* Join Thinnan Button - Right Aligned */}
           <div className="hidden md:block flex-1 md:flex-none text-right">
-            <a
-              href="https://thinnan.page.link/download"
-              className="bg-black text-white px-6 py-2 rounded-xl font-medium hover:bg-gray-800 transition-all duration-300"
+            <button
+              onClick={handleAppDownload}
+              className="bg-black text-white px-6 py-2 rounded-xl font-medium hover:bg-gray-800 transition-all duration-300 cursor-pointer"
             >
               join thinnan
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -374,13 +375,15 @@ const Navbar = () => {
                 </>
               )}
               <div className="pt-2">
-                <a
-                  href="https://thinnan.page.link/download"
-                  className="block bg-black text-white px-6 py-3 rounded-xl font-medium hover:bg-gray-800 transition-all duration-300 text-center text-lg"
-                  onClick={closeMenu}
+                <button
+                  onClick={(e) => {
+                    closeMenu();
+                    handleAppDownload(e);
+                  }}
+                  className="block w-full bg-black text-white px-6 py-3 rounded-xl font-medium hover:bg-gray-800 transition-all duration-300 text-center text-lg cursor-pointer"
                 >
                   join thinnan
-                </a>
+                </button>
               </div>
             </div>
           </div>

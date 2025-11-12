@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import feature1 from '../assets/images/features/feature_1.png';
-import feature2 from '../assets/images/features/feature_2.png';
-import feature3 from '../assets/images/features/feature_3.png';
 import feature4 from '../assets/images/features/feature_4.png';
 import feature5 from '../assets/images/features/feature_5.png';
+import { handleAppDownload } from '../utils/getStoreLink';
 
 const ProblemMissionSection = () => {
   const [currentCard, setCurrentCard] = useState(0);
@@ -127,9 +125,9 @@ const ProblemMissionSection = () => {
             </div>
             {/* Download Button */}
             <div className="pt-4">
-              <a
-                href="https://thinnan.page.link/download"
-                className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-primary text-white rounded-2xl sm:rounded-3xl font-semibold text-base sm:text-lg hover:bg-primary/90 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-primary/30 transform hover:scale-105 group"
+              <button
+                onClick={handleAppDownload}
+                className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-primary text-white rounded-2xl sm:rounded-3xl font-semibold text-base sm:text-lg hover:bg-primary/90 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-primary/30 transform hover:scale-105 group cursor-pointer"
               >
                 <span>Download Now</span>
                 <svg 
@@ -140,7 +138,7 @@ const ProblemMissionSection = () => {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
-              </a>
+              </button>
             </div>
           </div>
         </div>
