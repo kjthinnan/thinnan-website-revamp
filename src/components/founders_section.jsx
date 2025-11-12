@@ -4,12 +4,12 @@ import { useState, useEffect, useRef } from 'react';
 import kevinImg from '../assets/images/founders/kevin.png';
 import vishnuImg from '../assets/images/founders/vishnu.jpg';
 import annuImg from '../assets/images/founders/annu.png';
-import adriaanImg from '../assets/images/founders/adriaan.png';
 import calImg from '../assets/images/founders/cal.png';
 import danaImg from '../assets/images/founders/dana.png';
 import manyuImg from '../assets/images/founders/manyu.png';
 import kishoreImg from '../assets/images/founders/kishore.png';
-import adwaithImg from '../assets/images/founders/adwaith.png';
+import abelImg from '../assets/images/founders/abel.png';
+import shivangiImg from '../assets/images/founders/shivangi.png';
 
 const FoundersSection = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -39,32 +39,25 @@ const FoundersSection = () => {
       linkedin: "https://www.linkedin.com/in/annu-mathew-service-designer/"
     },
     {
-      name: "adriaan",
-      role: "cto",
-      areas: ["8 yrs IT experience", "co-founder, Unveiler"],
-      image: adriaanImg,
-      linkedin: "https://www.linkedin.com/in/adriaan-knapen/"
-    },
-    {
-      name: "manyu",
-      role: "ui/ux lead design",
-      areas: ["8+ years in digital product design"],
-      image: manyuImg,
-      linkedin: "https://www.linkedin.com/in/manyuvarma/"
-    },
-    {
       name: "cal",
       role: "advisor",
       areas: ["co-founder, Slack", "former head of eng, Flickr"],
       image: calImg,
       linkedin: "https://www.linkedin.com/in/iamcal/"
-    },
+    },    
     {
       name: "dana",
       role: "advisor",
       areas: ["co-founder, Sulapac Ltd", "co-founder, Kuurai Oy"],
       image: danaImg,
       linkedin: "https://www.linkedin.com/in/loredanamoimas/"
+    },   
+    {
+      name: "manyu",
+      role: "ui/ux lead design",
+      areas: ["8+ years in digital product design"],
+      image: manyuImg,
+      linkedin: "https://www.linkedin.com/in/manyuvarma/"
     },
     {
       name: "kishore",
@@ -74,12 +67,19 @@ const FoundersSection = () => {
       linkedin: "https://www.linkedin.com/in/kishorenataraj/"
     },
     {
-      name: "adwaith",
+      name: "abel",
       role: "developer",
       areas: ["app development"],
-      image: adwaithImg,
-      linkedin: "https://www.linkedin.com/in/adwaith-jayasankar-156539200/"
-    }
+      image: abelImg,
+      linkedin: "https://www.linkedin.com/in/abelboby/"
+    },
+    {
+      name: "shivangi",
+      role: "designer",
+      areas: ["product design"],
+      image: shivangiImg,
+      linkedin: "https://www.linkedin.com/in/shivangirawat24/"
+    },    
   ];
 
   // Intersection Observer for scroll animations

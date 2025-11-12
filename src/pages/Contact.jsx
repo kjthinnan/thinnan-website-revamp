@@ -94,14 +94,14 @@ const Contact = () => {
     },
     {
       name: "Annu Mathew",
-      role: "Co-Founder, Design & Marketing",
+      role: "Co-Founder, CDO",
       image: annuImg,
       linkedin: "https://www.linkedin.com/in/annu-mathew-service-designer/",
       calLink: "https://cal.com/annu-mathew-hn741e/30min"
     },
     {
       name: "Vishnu Aravind",
-      role: "Co-Founder, Sales & Operations",
+      role: "Co-Founder, COO",
       image: vishnuImg,
       linkedin: "https://www.linkedin.com/in/vishnuaravind01/",
       calLink: "https://cal.com/vishnu-aravind-gyo5kp/30min"
