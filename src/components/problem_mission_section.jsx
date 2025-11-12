@@ -1,86 +1,27 @@
-import { useState, useEffect } from 'react';
-import feature4 from '../assets/images/features/feature_4.png';
-import feature5 from '../assets/images/features/feature_5.png';
 import { handleAppDownload } from '../utils/getStoreLink';
+import feature4 from '../assets/images/features/feature_4.png';
 
 const ProblemMissionSection = () => {
-  const [currentCard, setCurrentCard] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const featureImages = [
-    { id: 4, image: feature4, alt: 'Thinnan Feature 4' },
-    { id: 5, image: feature5, alt: 'Thinnan Feature 5' },
-  ];
-
-  // Auto-rotate through feature images
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleCardChange((prev) => (prev + 1) % featureImages.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [featureImages.length]);
-
-  const handleCardChange = (newCardOrFunction) => {
-    setIsTransitioning(true);
-
-    setTimeout(() => {
-      if (typeof newCardOrFunction === 'function') {
-        setCurrentCard(newCardOrFunction);
-      } else {
-        setCurrentCard(newCardOrFunction);
-      }
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 50);
-    }, 300);
-  };
-
   return (
     <section className="relative py-14 sm:py-20 md:py-28 lg:py-32 bg-secondary overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 relative z-10">
         {/* Main Content - Reversed Layout (Image Left, Text Right) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left Side - Phone Screenshots */}
+          {/* Left Side - Phone Screenshot */}
           <div className="flex items-center justify-center lg:justify-start order-2 lg:order-1">
             <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px]">
-              {/* All images stacked with cross-fade effect */}
-              {featureImages.map((feature, index) => (
-                <img
-                  key={feature.id}
-                  src={feature.image}
-                  alt={feature.alt}
-                  className="w-full h-auto transition-opacity duration-700 ease-in-out"
-                  style={{
-                    opacity: index === currentCard ? 1 : 0,
-                    position: index === currentCard ? 'relative' : 'absolute',
-                    top: index === currentCard ? 'auto' : 0,
-                    left: index === currentCard ? 'auto' : 0,
-                    zIndex: index === currentCard ? 10 : 5,
-                    pointerEvents: index === currentCard ? 'auto' : 'none',
-                  }}
-                  loading="lazy"
-                />
-              ))}
-              {/* Progress Dots - Below phone */}
-              <div className="flex justify-center gap-3 mt-8">
-                {featureImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      if (index !== currentCard) handleCardChange(index);
-                    }}
-                    className="transition-all duration-500 ease-out rounded-full hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                    style={{
-                      width: index === currentCard ? '48px' : '12px',
-                      height: '12px',
-                      backgroundColor: index === currentCard ? '#7C310A' : '#D1D5DB',
-                      transition: 'all 500ms cubic-bezier(0.4, 0.0, 0.2, 1)',
-                    }}
-                    aria-label={`Go to image ${index + 1}`}
-                  />
-                ))}
-              </div>
+              <img
+                src={feature4}
+                alt="Thinnan Feature 4"
+                className="w-full h-auto transition-opacity duration-700 ease-in-out"
+                style={{
+                  opacity: 1,
+                  position: 'relative',
+                  zIndex: 10,
+                  pointerEvents: 'auto',
+                }}
+                loading="lazy"
+              />
             </div>
           </div>
 
