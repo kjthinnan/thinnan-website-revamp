@@ -1,6 +1,6 @@
 import GoogleIcon from '../assets/icons/google_icon';
 import AppleIcon from '../assets/icons/apple_icon';
-import downloadScreenshot from '../assets/images/download_section.png';
+import downloadScreenshot from '../assets/images/download_section.webp';
 
 const DownloadSection = () => {
   return (

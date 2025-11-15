@@ -1,5 +1,5 @@
 import { handleAppDownload } from '../utils/getStoreLink';
-import feature4 from '../assets/images/features/feature_4.png';
+import feature4 from '../assets/images/features/feature_4.webp';
 
 const ProblemMissionSection = () => {
   return (
