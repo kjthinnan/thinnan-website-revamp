@@ -1,4 +1,6 @@
 import appIcon from '../assets/icons/app_icon.png';
+import GoogleIcon from '../assets/icons/google_icon';
+import AppleIcon from '../assets/icons/apple_icon';
 
 const Footer = () => {
   return (
@@ -106,6 +108,33 @@ const Footer = () => {
               </ul>
             </div>
           </div>
+
+          {/* Download Buttons - Mobile */}
+          <div className="mt-8 flex flex-col gap-3">
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.jathikka.thinaan&hl=en" 
+              className="w-48 max-w-full sm:w-auto flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-4 py-2.5 rounded-xl hover:bg-black/60 transition-all duration-300 shadow-lg hover:shadow-accent/10 group relative overflow-hidden border border-white/10 mx-auto"
+            >
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent/30 to-accent/10 bg-size-200 bg-pos-0 group-hover:bg-pos-100 transition-all duration-500 opacity-0 group-hover:opacity-100"></span>
+              <GoogleIcon />
+              <div className="ml-3 relative">
+                <div className="text-xs">GET IT ON</div>
+                <div className="text-sm font-medium">Google Play</div>
+              </div>
+            </a>
+            
+            <a 
+              href="https://apps.apple.com/fi/app/thinnan/id6502411893" 
+              className="w-48 max-w-full sm:w-auto flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-4 py-2.5 rounded-xl hover:bg-black/60 transition-all duration-300 shadow-lg hover:shadow-accent/10 group relative overflow-hidden border border-white/10 mx-auto"
+            >
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent/30 to-accent/10 bg-size-200 bg-pos-0 group-hover:bg-pos-100 transition-all duration-500 opacity-0 group-hover:opacity-100"></span>
+              <AppleIcon />
+              <div className="ml-3 relative">
+                <div className="text-xs">Download on the</div>
+                <div className="text-sm font-medium">App Store</div>
+              </div>
+            </a>
+          </div>
         </div>
 
         {/* Desktop Layout - Original structure */}
@@ -195,6 +224,33 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
+          </div>
+
+          {/* Download Buttons - Desktop */}
+          <div className="col-span-6 mt-8 md:mt-10 lg:mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.jathikka.thinaan&hl=en" 
+              className="flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-8 py-4 rounded-xl hover:bg-black/60 transition-all duration-300 shadow-lg hover:shadow-accent/10 hover:-translate-y-1 group relative overflow-hidden border border-white/10"
+            >
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent/30 to-accent/10 bg-size-200 bg-pos-0 group-hover:bg-pos-100 transition-all duration-500 opacity-0 group-hover:opacity-100"></span>
+              <GoogleIcon />
+              <div className="ml-3 sm:ml-4 relative">
+                <div className="text-sm sm:text-base">GET IT ON</div>
+                <div className="text-base sm:text-lg font-medium">Google Play</div>
+              </div>
+            </a>
+            
+            <a 
+              href="https://apps.apple.com/fi/app/thinnan/id6502411893" 
+              className="flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-8 py-4 rounded-xl hover:bg-black/60 transition-all duration-300 shadow-lg hover:shadow-accent/10 hover:-translate-y-1 group relative overflow-hidden border border-white/10"
+            >
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent/30 to-accent/10 bg-size-200 bg-pos-0 group-hover:bg-pos-100 transition-all duration-500 opacity-0 group-hover:opacity-100"></span>
+              <AppleIcon />
+              <div className="ml-3 sm:ml-4 relative">
+                <div className="text-sm sm:text-base">Download on the</div>
+                <div className="text-base sm:text-lg font-medium">App Store</div>
+              </div>
+            </a>
           </div>
         </div>
 
