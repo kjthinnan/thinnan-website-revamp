@@ -97,7 +97,7 @@ const Footer = () => {
             </div>
 
             {/* Right Column - Support Links */}
-            <div>
+            <div className="text-right">
               <ul className="space-y-3 text-sm">
                 <li>
                   <a href="/contact#feedback-form" className="text-gray-600 hover:text-accent transition-colors duration-300">request a feature</a>
@@ -113,7 +113,7 @@ const Footer = () => {
           <div className="mt-8 flex flex-col gap-3">
             <a 
               href="https://play.google.com/store/apps/details?id=com.jathikka.thinaan&hl=en" 
-              className="w-48 max-w-full sm:w-auto flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-4 py-2.5 rounded-xl hover:bg-black/60 transition-all duration-300 shadow-lg hover:shadow-accent/10 group relative overflow-hidden border border-white/10 mx-auto"
+              className="w-48 max-w-full sm:w-auto flex items-center justify-center bg-black text-white px-4 py-2.5 rounded-xl hover:bg-black/80 transition-all duration-300 shadow-lg hover:shadow-accent/10 group relative overflow-hidden border border-white/10 mx-auto"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent/30 to-accent/10 bg-size-200 bg-pos-0 group-hover:bg-pos-100 transition-all duration-500 opacity-0 group-hover:opacity-100"></span>
               <GoogleIcon />
@@ -125,7 +125,7 @@ const Footer = () => {
             
             <a 
               href="https://apps.apple.com/fi/app/thinnan/id6502411893" 
-              className="w-48 max-w-full sm:w-auto flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-4 py-2.5 rounded-xl hover:bg-black/60 transition-all duration-300 shadow-lg hover:shadow-accent/10 group relative overflow-hidden border border-white/10 mx-auto"
+              className="w-48 max-w-full sm:w-auto flex items-center justify-center bg-black text-white px-4 py-2.5 rounded-xl hover:bg-black/80 transition-all duration-300 shadow-lg hover:shadow-accent/10 group relative overflow-hidden border border-white/10 mx-auto"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent/30 to-accent/10 bg-size-200 bg-pos-0 group-hover:bg-pos-100 transition-all duration-500 opacity-0 group-hover:opacity-100"></span>
               <AppleIcon />
@@ -230,7 +230,7 @@ const Footer = () => {
           <div className="col-span-6 mt-8 md:mt-10 lg:mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="https://play.google.com/store/apps/details?id=com.jathikka.thinaan&hl=en" 
-              className="flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-8 py-4 rounded-xl hover:bg-black/60 transition-all duration-300 shadow-lg hover:shadow-accent/10 hover:-translate-y-1 group relative overflow-hidden border border-white/10"
+              className="flex items-center justify-center bg-black text-white px-8 py-4 rounded-xl hover:bg-black/80 transition-all duration-300 shadow-lg hover:shadow-accent/10 hover:-translate-y-1 group relative overflow-hidden border border-white/10"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent/30 to-accent/10 bg-size-200 bg-pos-0 group-hover:bg-pos-100 transition-all duration-500 opacity-0 group-hover:opacity-100"></span>
               <GoogleIcon />
@@ -242,7 +242,7 @@ const Footer = () => {
             
             <a 
               href="https://apps.apple.com/fi/app/thinnan/id6502411893" 
-              className="flex items-center justify-center bg-black/40 backdrop-blur-sm text-white px-8 py-4 rounded-xl hover:bg-black/60 transition-all duration-300 shadow-lg hover:shadow-accent/10 hover:-translate-y-1 group relative overflow-hidden border border-white/10"
+              className="flex items-center justify-center bg-black text-white px-8 py-4 rounded-xl hover:bg-black/80 transition-all duration-300 shadow-lg hover:shadow-accent/10 hover:-translate-y-1 group relative overflow-hidden border border-white/10"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent/30 to-accent/10 bg-size-200 bg-pos-0 group-hover:bg-pos-100 transition-all duration-500 opacity-0 group-hover:opacity-100"></span>
               <AppleIcon />
@@ -251,15 +251,6 @@ const Footer = () => {
                 <div className="text-base sm:text-lg font-medium">App Store</div>
               </div>
             </a>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 pt-4 sm:pt-6 md:pt-8 border-t border-gray-200">
-          <div className="flex justify-center items-center">
-            <p className="text-gray-500 text-xs sm:text-sm text-center">
-              © {new Date().getFullYear()} thinnan. all rights reserved.
-            </p>
           </div>
         </div>
       </div>

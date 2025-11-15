@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 const CommunitySection = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const sectionRef = useRef(null);
   
   const reviews = [
@@ -79,6 +80,27 @@ const CommunitySection = () => {
     };
   }, [hasAnimated]);
 
+  // Auto-advance carousel on mobile
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % reviews.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(timer);
+  }, [reviews.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % reviews.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + reviews.length) % reviews.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
   return (
     <section 
       ref={sectionRef}
@@ -103,39 +125,122 @@ const CommunitySection = () => {
           </p>
         </div>
 
-        {/* Reviews Grid - Masonry Style */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6 md:gap-8 space-y-4 sm:space-y-6 md:space-y-8">
-          {reviews.map((review, index) => (
-            <div
-              key={index}
-              className="break-inside-avoid mb-4 sm:mb-6 md:mb-8 transition-all duration-700"
-              style={{
-                opacity: hasAnimated ? 1 : 0,
-                transform: hasAnimated ? 'translateY(0)' : 'translateY(30px)',
-                transitionDelay: `${index * 100}ms`,
-              }}
+        {/* Mobile Carousel - Only visible on mobile */}
+        <div className="sm:hidden relative">
+          {/* Carousel Container */}
+          <div className="relative overflow-hidden rounded-3xl">
+            <div 
+              className="flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
-              <div className="bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-primary/20 group relative overflow-hidden">
-                {/* Decorative element */}
-                <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                {/* Quote icon */}
-                <div className="mb-3 sm:mb-4">
-                  <svg className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-primary/20 group-hover:text-primary/40 transition-colors duration-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg>
+              {reviews.map((review, index) => (
+                <div
+                  key={index}
+                  className="w-full flex-shrink-0 px-2"
+                >
+                  <div className="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 min-h-[280px] flex flex-col justify-between relative overflow-hidden">
+                    {/* Decorative gradient */}
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary"></div>
+                    
+                    {/* Quote icon */}
+                    <div className="mb-4">
+                      <svg className="w-8 h-8 text-primary/30" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                      </svg>
+                    </div>
+
+                    {/* Review Text */}
+                    <p className="text-base text-primary-text leading-relaxed font-normal flex-grow mb-4">
+                      {review.text}
+                    </p>
+
+                    {/* Author */}
+                    <p className="text-sm text-secondary-grey font-medium italic">
+                      — {review.author}
+                    </p>
+                  </div>
                 </div>
-
-                {/* Review Text */}
-                <p className="text-sm sm:text-base md:text-lg text-primary-text leading-relaxed font-normal">
-                  {review.text}
-                </p>
-
-                {/* Hover effect overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-transparent transition-all duration-500 rounded-xl sm:rounded-2xl md:rounded-3xl pointer-events-none"></div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white transition-all duration-300 z-10 border border-gray-200"
+            aria-label="Previous review"
+          >
+            <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white transition-all duration-300 z-10 border border-gray-200"
+            aria-label="Next review"
+          >
+            <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Dots Navigation */}
+          <div className="flex justify-center gap-2 mt-6">
+            {reviews.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === currentSlide
+                    ? 'w-8 h-2 bg-primary'
+                    : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Go to review ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Counter */}
+          <div className="text-center mt-4 text-sm text-secondary-grey">
+            {currentSlide + 1} / {reviews.length}
+          </div>
+        </div>
+
+        {/* Desktop Grid - Hidden on mobile */}
+        <div className="hidden sm:block">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6 md:gap-8 space-y-4 sm:space-y-6 md:space-y-8">
+            {reviews.map((review, index) => (
+              <div
+                key={index}
+                className="break-inside-avoid mb-4 sm:mb-6 md:mb-8 transition-all duration-700"
+                style={{
+                  opacity: hasAnimated ? 1 : 0,
+                  transform: hasAnimated ? 'translateY(0)' : 'translateY(30px)',
+                  transitionDelay: `${index * 100}ms`,
+                }}
+              >
+                <div className="bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-primary/20 group relative overflow-hidden">
+                  {/* Decorative element */}
+                  <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Quote icon */}
+                  <div className="mb-3 sm:mb-4">
+                    <svg className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-primary/20 group-hover:text-primary/40 transition-colors duration-500" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                  </div>
+
+                  {/* Review Text */}
+                  <p className="text-sm sm:text-base md:text-lg text-primary-text leading-relaxed font-normal">
+                    {review.text}
+                  </p>
+
+                  {/* Hover effect overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-transparent transition-all duration-500 rounded-xl sm:rounded-2xl md:rounded-3xl pointer-events-none"></div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
