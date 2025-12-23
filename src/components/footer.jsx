@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import appIcon from '../assets/icons/app_icon.png';
 import GoogleIcon from '../assets/icons/google_icon';
 import AppleIcon from '../assets/icons/apple_icon';
+import NewsletterModal from './newsletter_modal';
 
 const Footer = () => {
+  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
   return (
     <footer id="contact" className="bg-background text-gray-600 relative overflow-hidden">
       {/* Background elements */}
@@ -105,6 +108,15 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link to="/contact#feedback-form" className="text-gray-600 hover:text-accent transition-colors duration-300">report a bug</Link>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => setIsNewsletterModalOpen(true)}
+                    className="inline-flex items-center gap-1.5 text-gray-600 hover:text-accent transition-colors duration-300 cursor-pointer"
+                  >
+                    newsletter
+                    <span className="bg-accent text-white text-xs px-2 py-0.5 rounded-full font-semibold">NEW</span>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -223,6 +235,15 @@ const Footer = () => {
                 <li>
                   <Link to="/contact#feedback-form" className="text-gray-600 hover:text-accent transition-colors duration-300">report a bug</Link>
                 </li>
+                <li>
+                  <button 
+                    onClick={() => setIsNewsletterModalOpen(true)}
+                    className="inline-flex items-center gap-2 text-gray-600 hover:text-accent transition-colors duration-300 cursor-pointer"
+                  >
+                    newsletter
+                    <span className="bg-accent text-white text-xs px-2 py-0.5 rounded-full font-semibold">NEW</span>
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
@@ -255,6 +276,12 @@ const Footer = () => {
           </div> */}
         </div>
       </div>
+
+      {/* Newsletter Modal */}
+      <NewsletterModal 
+        isOpen={isNewsletterModalOpen} 
+        onClose={() => setIsNewsletterModalOpen(false)} 
+      />
     </footer>
   );
 };
