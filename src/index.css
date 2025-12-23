@@ -51,4 +51,12 @@ body {
   .card {
     @apply bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
   }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.3s ease-out;
+  }
 }
