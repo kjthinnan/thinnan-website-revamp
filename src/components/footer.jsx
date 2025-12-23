@@ -25,7 +25,7 @@ const Footer = () => {
       {/* Right gradient blur */}
       <div className="absolute -right-32 bottom-1/3 w-48 sm:w-64 h-48 sm:h-64 bg-accent/5 rounded-full blur-3xl"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-6 sm:py-8 md:py-10 lg:py-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-6 sm:py-8 md:py-10 lg:py-12 pb-20 sm:pb-8 relative z-10">
         {/* Mobile Layout - Custom structure */}
         <div className="block sm:hidden">
           {/* Top Row - Logo and Thinnan text side by side */}
