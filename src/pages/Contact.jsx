@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import ScrollToTopButton from '../components/ScrollToTopButton';
+import NewsletterModal from '../components/newsletter_modal';
 
 // Import founder images
 import kevinImg from '../assets/images/founders/kevin.webp';
@@ -9,7 +11,9 @@ import vishnuImg from '../assets/images/founders/vishnu.webp';
 import annuImg from '../assets/images/founders/annu.webp';
 
 const Contact = () => {
+  const location = useLocation();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
   const [formType, setFormType] = useState('bug'); // 'bug' or 'feature'
   const [formData, setFormData] = useState({
     name: '',
@@ -21,6 +25,13 @@ const Contact = () => {
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
 
   useEffect(() => {
+    // Check if we should open newsletter modal from navigation state
+    if (location.state?.openNewsletter) {
+      setIsNewsletterModalOpen(true);
+      // Clear the state
+      window.history.replaceState({}, document.title);
+    }
+
     // Check if there's a hash in the URL
     const hash = window.location.hash;
     
@@ -560,6 +571,12 @@ const Contact = () => {
 
       <Footer />
       <ScrollToTopButton />
+
+      {/* Newsletter Modal */}
+      <NewsletterModal 
+        isOpen={isNewsletterModalOpen} 
+        onClose={() => setIsNewsletterModalOpen(false)} 
+      />
     </div>
   );
 };
