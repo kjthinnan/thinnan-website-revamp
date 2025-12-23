@@ -115,7 +115,7 @@ const Footer = () => {
                     className="inline-flex items-center gap-1.5 text-gray-600 hover:text-accent transition-colors duration-300 cursor-pointer"
                   >
                     newsletter
-                    <span className="bg-accent text-white text-xs px-2 py-0.5 rounded-full font-semibold">NEW</span>
+                    <span className="bg-accent text-white text-xs px-2 py-0.5 rounded-full font-semibold">new</span>
                   </button>
                 </li>
               </ul>
@@ -241,7 +241,7 @@ const Footer = () => {
                     className="inline-flex items-center gap-2 text-gray-600 hover:text-accent transition-colors duration-300 cursor-pointer"
                   >
                     newsletter
-                    <span className="bg-accent text-white text-xs px-2 py-0.5 rounded-full font-semibold">NEW</span>
+                    <span className="bg-accent text-white text-xs px-2 py-0.5 rounded-full font-semibold">new</span>
                   </button>
                 </li>
               </ul>
