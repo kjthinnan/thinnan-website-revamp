@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import appIcon from '../assets/icons/app_icon.png';
 import GoogleIcon from '../assets/icons/google_icon';
 import AppleIcon from '../assets/icons/apple_icon';
+import NewsletterModal from './newsletter_modal';
 
 const Footer = () => {
+  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
   return (
     <footer id="contact" className="bg-background text-gray-600 relative overflow-hidden">
       {/* Background elements */}
@@ -22,7 +25,7 @@ const Footer = () => {
       {/* Right gradient blur */}
       <div className="absolute -right-32 bottom-1/3 w-48 sm:w-64 h-48 sm:h-64 bg-accent/5 rounded-full blur-3xl"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-6 sm:py-8 md:py-10 lg:py-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-6 sm:py-8 md:py-10 lg:py-12 pb-20 sm:pb-8 relative z-10">
         {/* Mobile Layout - Custom structure */}
         <div className="block sm:hidden">
           {/* Top Row - Logo and Thinnan text side by side */}
@@ -105,6 +108,15 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link to="/contact#feedback-form" className="text-gray-600 hover:text-accent transition-colors duration-300">report a bug</Link>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => setIsNewsletterModalOpen(true)}
+                    className="inline-flex items-center gap-1.5 text-gray-600 hover:text-accent transition-colors duration-300 cursor-pointer"
+                  >
+                    newsletter
+                    <span className="bg-accent text-white text-xs px-2 py-0.5 rounded-full font-semibold">new</span>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -223,6 +235,15 @@ const Footer = () => {
                 <li>
                   <Link to="/contact#feedback-form" className="text-gray-600 hover:text-accent transition-colors duration-300">report a bug</Link>
                 </li>
+                <li>
+                  <button 
+                    onClick={() => setIsNewsletterModalOpen(true)}
+                    className="inline-flex items-center gap-2 text-gray-600 hover:text-accent transition-colors duration-300 cursor-pointer"
+                  >
+                    newsletter
+                    <span className="bg-accent text-white text-xs px-2 py-0.5 rounded-full font-semibold">new</span>
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
@@ -255,6 +276,12 @@ const Footer = () => {
           </div> */}
         </div>
       </div>
+
+      {/* Newsletter Modal */}
+      <NewsletterModal 
+        isOpen={isNewsletterModalOpen} 
+        onClose={() => setIsNewsletterModalOpen(false)} 
+      />
     </footer>
   );
 };
